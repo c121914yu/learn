@@ -2,53 +2,60 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>滚动视觉差</title>
-	<link rel="stylesheet" type="text/css" href="index.css"/>
+	<title>移动端顶部导航栏</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-	<div class="pimg1">
-		<div class="ptext">
-			<span class="border">
-				滚动视觉差
+	<div>
+		<nav class="navbar">
+			<span class="open-side" onclick="side()">
+				<svg width="30" height="30">
+					<path d="M0,5 30,5" stroke="#fff" stroke-width="5"></path>
+					<path d="M0,14 30,14" stroke="#fff" stroke-width="5"></path>
+					<path d="M0,23 30,23" stroke="#fff" stroke-width="5"></path>
+				</svg>
 			</span>
+			<ul class="navbar-nav">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Service</a></li>
+				<li><a href="#">Concat</a></li>
+			</ul>
+		</nav>
+		
+		<div id="side-menu" class="side-menu">
+			<a href="#">Home</a>
+			<a href="#">About</a>
+			<a href="#">Service</a>
+			<a href="#">Concat</a>
+			<div class="btn-close" onclick="side()">&and;</div>
 		</div>
-	</div>
-	<section class="section section-light">
-		Lorem ipsum dolosumenda beatae error omnis numquam unde alias similique ratione. Nihil reiciendis eaque labore voluptas aut eveniet nostrum deleniti perspiciatis omnis dolorem adipisci illum quaerat totam. Est aliquid veritatis quis doloribus ipsam velit consectetur ea architecto impedit fugiat.
-	</section>
-	
-	<div class="pimg2">
-		<div class="ptext">
-			<span class="border">
-				img two
-			</span>
-		</div>
-	</div>
-	<section class="section section-dark">
-		<h2>第二张图</h2>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea aliquam quia laborum ad sequi enim natus recusandae tenetur? Ex accusamus numquam alias asperiores aperiam maiores ullam. Maiores repellat ratione deserunt!
-	</section>
-	
-	<div class="pimg3">
-		<div class="ptext">
-			<span class="border">
-				img three
-			</span>
-		</div>
-	</div>
-	<section class="section section-dark">
-		<h2>第三张图</h2>
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt esse quod voluptatum alias possimus saepe at quisquam minima pariatur officia vero nam impedit magnam dignissimos nihil sapiente aperiam doloribus laudantium nesciunt consequuntur veniam repellendus harum dolorum in vel distinctio dolorem sit velit quas eaque obcaecati ad aliquid sed corrupti temporibus?
-	</section>
-	
-	<div class="pimg4">
-		<div class="ptext">
-			<span class="border">
-				img four
-			</span>
+		
+		<div class="main" id="main" onclick="closeSide()">
+			<h1>响应式顶部导航栏</h1>
 		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+		var open = false
+		function side(){
+			console.log(open)
+			if(open)
+				closeSide()
+			else
+				openSide()
+			open = !open
+		}
+		function openSide(){
+			document.getElementById("side-menu").style.height = "270px"
+			document.getElementById("main").style.marginTop = "270px"
+		}
+		function closeSide(){
+			if(open){
+				document.getElementById("side-menu").style.height = "0"
+				document.getElementById("main").style.marginTop="0"
+			}
+		}
+	</script>
 </html>

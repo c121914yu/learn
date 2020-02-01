@@ -1,0 +1,87 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+}
+body{
+	background-color: #F4F4F4;
+}
+
+.navbar{
+	background-color: #3b5998;
+	overflow: hidden;
+	height: 63px;
+	display: flex;
+	align-items: center;
+}
+.navbar .open-side{
+	position: absolute;
+	margin-top: 5px;
+	right: 5%;
+	cursor: pointer;
+}
+
+.navbar .navbar-nav{
+	margin: 8px 0 0;
+	list-style: none;
+	display: flex;
+	align-items: center;
+}
+
+.navbar .navbar-nav li a{
+	color: #f2f2f2;
+	text-decoration: none;
+	font-size: 17px;
+	padding: 0 16px;
+}
+.navbar .navbar-nav li a:hover{
+	background-color: #DDDDDD;
+	color: #000000;
+}
+
+.side-menu{
+	height: 0;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	top: 63px;
+	left: 0;
+	background-color: #111111;
+	opacity: 0.9;
+	overflow: hidden;
+	transition: height 0.6s;
+}
+.side-menu a{
+	padding: 15px 20px;
+	display: block;
+	text-decoration: none;
+	font-size: 22px;
+	color: #cccccc;
+	transition: 0.6s;
+}
+.side-menu .btn-close{
+	color: #CCCCCC;
+	font-size: 35px;
+	text-align: center;
+	cursor: pointer;
+}
+.side-menu a:hover,.side-menu .btn-close:hover{
+	color: orange;
+}
+
+.main{
+	transition: margin-top 0.6s;
+	padding: 20px;
+} 
+
+
+@media(min-width:600px){
+	.navbar .open-side{
+		display: none;
+	}
+}
+@media(max-width:600px){
+	.navbar .navbar-nav{
+		display: none;
+	}
+}
