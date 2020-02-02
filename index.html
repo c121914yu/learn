@@ -2,60 +2,62 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
-	<title>移动端顶部导航栏</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Blur Effect Demo</title>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-	<div>
-		<nav class="navbar">
-			<span class="open-side" onclick="side()">
-				<svg width="30" height="30">
-					<path d="M0,5 30,5" stroke="#fff" stroke-width="5"></path>
-					<path d="M0,14 30,14" stroke="#fff" stroke-width="5"></path>
-					<path d="M0,23 30,23" stroke="#fff" stroke-width="5"></path>
-				</svg>
-			</span>
-			<ul class="navbar-nav">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Service</a></li>
-				<li><a href="#">Concat</a></li>
-			</ul>
-		</nav>
-		
-		<div id="side-menu" class="side-menu">
-			<a href="#">Home</a>
-			<a href="#">About</a>
-			<a href="#">Service</a>
-			<a href="#">Concat</a>
-			<div class="btn-close" onclick="side()">&and;</div>
+	<header class="showcase">
+		<div class="content">
+			<h1 class="title">模糊视觉Demo</h1>
+			<p class="text">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil dolorem.
+			</p>
 		</div>
-		
-		<div class="main" id="main" onclick="closeSide()">
-			<h1>响应式顶部导航栏</h1>
+	</header>
+	
+	<!-- services -->
+	<section class="services">
+		<div class="container grid-3 center">
+			<div>
+				<img src="img/services1.png">
+				<h3>bilbil</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus amet!</p>
+			</div>
+			
+			<div>
+				<img src="img/services2.png">
+				<h3>腾讯课堂</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus amet!</p>
+			</div>
+			
+			<div>
+				<img src="img/services3.png">
+				<h3>网易云课堂</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus amet!</p>
+			</div>
 		</div>
-	</div>
+	</section>
+	
+	<!-- about us -->
+	<section class="about bg-light">
+		<div class="container">
+			<div class="grid-2">
+				<div class="center">
+					<img src="img/about.png" alt="">
+				</div>
+				<div>
+					<h3>关于我们</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa earum error veritatis deleniti a impedit fugit suscipit alias consequatur reiciendis velit maxime enim inventore magni et eius sint ullam ducimus repellat id possimus voluptas illo ut excepturi dolorem cumque eos.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- footer -->
+	<footer class="bg-dark center">
+		jlyct &copy; 2020
+	</footer>
 </body>
-
-<script type="text/javascript">
-		var open = false
-		function side(){
-			console.log(open)
-			if(open)
-				closeSide()
-			else
-				openSide()
-			open = !open
-		}
-		function openSide(){
-			document.getElementById("side-menu").style.height = "270px"
-			document.getElementById("main").style.marginTop = "270px"
-		}
-		function closeSide(){
-			if(open){
-				document.getElementById("side-menu").style.height = "0"
-				document.getElementById("main").style.marginTop="0"
-			}
-		}
-	</script>
 </html>
