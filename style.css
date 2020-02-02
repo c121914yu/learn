@@ -2,43 +2,159 @@
 	margin: 0;
 	padding: 0;
 }
+
 body{
-	font-family: 'Bungee', cursive;
-	background-color: #000000;
-	color: #FFFFFF;
-	overflow: hidden;
+	background-color: #222222;
+	font-family: Arial, Helvetica, sans-serif;
 }
+
 .container{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: url(img/bg.jpg) no-repeat center center/cover;
-	height: 100vh;
+	margin: 50px auto;
+	width: 80%;
 }
-.animated{
+
+header h1{
+	color: #FFFFFF;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.accordion{
+	background-color: #333333;
+	width: 100%;
+	min-width: 800px;
+	display: block;
+	overflow: hidden;
+	list-style: none;
+	height: 200px;
+	/* 字体大小为0,隐藏文字 */
+	font-size: 0;
+}
+
+.tab{
+	display: inline-block;
+	background-color: #444444;
+	border-right: 1px solid #333333;
+	width: 80px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
 	margin: 0;
-	padding: 0;
-	font-size: 5rem;
-	background: url(img/text-bg.png) no-repeat ;
-	background-clip: text;
-	-webkit-background-clip: text;
-	color: transparent;
-	animation: moveBg 90s linear infinite;
-	-webkit-animation: moveBg 90s linear infinite;
+	transition: all 0.4s ease-in-out 0.1s; 
 }
-@keyframes moveBg{
-	0%{
-		background-position: 0% 30%;
+
+/* 文本 */
+.tab .content{
+	background-color: #FFFFFF;
+	width: 360px;
+	height: 200px;
+	margin-left: 80px;
+	padding: 50px 0 0 15px;
+	position: relative;
+}
+.tab .content h1{
+	font-size: 2.5rem;
+	margin-bottom: 10px;
+}
+.tab .content p{
+	font-size: 0.85rem;
+	line-height: 1.4;
+	padding-right: 30px;
+}
+
+.social i::before,
+.social i::after{
+	width: 80px;
+	height: 200px;
+	position: absolute;
+	/* 文本缩进 */
+	text-indent: 0;
+	padding-top: 90px;
+	padding-left: 25px;
+	display: block;
+	font-style: normal;
+	font-size: 30px;
+	color: #FFFFFF;
+	transition: all 0.4s ease-in-out 0.1s;
+}
+
+.social i::after{
+	font-size: 48px;
+	padding-left: 20px;
+	padding-top: 80px;
+	margin-left: 85px;
+}
+
+.youtube i::before,
+.youtube i::after{
+	content: "\e625";
+}
+.youtube i::after{
+	background-color: #FF0000;
+}
+
+.twitter i::before,
+.twitter i::after{
+	content: "\e624";
+}
+.twitter i::after{
+	background-color: #6dc5dd;
+}
+
+.linkedin i::before,
+.linkedin i::after{
+	content: "\e629";
+}
+.linkedin i::after{
+	background-color: #6dc993;
+}
+
+.github i::before,
+.github i::after{
+	content: "\e627";
+}
+.github i::after{
+	background-color: #6e5494;
+}
+
+.tab:hover{
+	width: 450px;
+}
+.tab:hover .social i::before{
+	margin-left: -100px;
+}
+.tab:hover .social i::after{
+	margin-left: -5px;
+}
+
+@media (max-width:950px) {
+	.container{
+		width: 70%;
 	}
-	100%{
-		background-position: 100% 50%;
+	.accordion{
+		display: block;
+		height: auto;
+		min-width: 450px;
+	}
+	.tab{
+		display: block;
+		width: 100%;
+		border-bottom: 3px solid #333333;
+	}
+	.tab .content{
+		width: 85%;
+	}
+	.tab:hover{
+		width: 100%;
 	}
 }
-@-webkit-keyframes move{
-	0%{
-		background-position: 0% 30%;
+
+@media (max-width:680px) {
+	.container{
+		width: 95%;
 	}
-	100%{
-		background-position: 100% 50%;
+	.accordion{
+		width: 100%;
+		min-width: 300px;
 	}
 }

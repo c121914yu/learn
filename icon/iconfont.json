@@ -1,0 +1,51 @@
+{
+  "id": "1625512",
+  "name": "accordion",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "12909275",
+      "name": "Twitter",
+      "font_class": "twitter",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "12909276",
+      "name": "YouTube",
+      "font_class": "youtube",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "12909278",
+      "name": "新浪微博",
+      "font_class": "sina",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "12909279",
+      "name": "Github",
+      "font_class": "github",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "12909293",
+      "name": "哔哩哔哩",
+      "font_class": "bilibili",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "12910036",
+      "name": "LinkedIn",
+      "font_class": "linkedin",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    }
+  ]
+}
