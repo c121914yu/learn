@@ -1,160 +1,130 @@
-*{
-	margin: 0;
-	padding: 0;
+/* css变量 */
+:root{
+	--container-bg-color:#333;
+	--left-bg-color:rgba(233,39,39,0.2);
+	--left-button-hover-color:rgba(161,11,11,0.3);
+	--right-bg-color:rgba(43,43,43,0.2);
+	--right-button-hover-color:rgba(92,92,92,0.3);
+	--hover-width:75%;
+	--other-width:25%;
+	--speed:1000ms;
 }
-
-body{
-	background-color: #222222;
+html,body{
+	padding: 0;
+	margin: 0;
 	font-family: Arial, Helvetica, sans-serif;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+h1{
+	font-size: 4rem;
+	color: #FFFFFF;
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+}
+.button{
+	display: block;
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translateX(-50%);
+	height: 2.5rem;
+	padding-top: 1.3rem;
+	width: 15rem;
+	text-align: center;
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+	font-size: 1rem;
+	font-weight: bold;
+	text-decoration: none;
 }
 
 .container{
-	margin: 50px auto;
-	width: 80%;
-}
-
-header h1{
-	color: #FFFFFF;
-	margin-bottom: 10px;
-	text-align: center;
-}
-
-.accordion{
-	background-color: #333333;
+	position: relative;
 	width: 100%;
-	min-width: 800px;
-	display: block;
-	overflow: hidden;
-	list-style: none;
-	height: 200px;
-	/* 字体大小为0,隐藏文字 */
-	font-size: 0;
+	height: 100%;
+	background: var(--container-bg-color);
 }
 
-.tab{
-	display: inline-block;
-	background-color: #444444;
-	border-right: 1px solid #333333;
-	width: 80px;
-	height: 200px;
-	overflow: hidden;
-	position: relative;
-	margin: 0;
-	transition: all 0.4s ease-in-out 0.1s; 
-}
-
-/* 文本 */
-.tab .content{
-	background-color: #FFFFFF;
-	width: 360px;
-	height: 200px;
-	margin-left: 80px;
-	padding: 50px 0 0 15px;
-	position: relative;
-}
-.tab .content h1{
-	font-size: 2.5rem;
-	margin-bottom: 10px;
-}
-.tab .content p{
-	font-size: 0.85rem;
-	line-height: 1.4;
-	padding-right: 30px;
-}
-
-.social i::before,
-.social i::after{
-	width: 80px;
-	height: 200px;
+.split{
 	position: absolute;
-	/* 文本缩进 */
-	text-indent: 0;
-	padding-top: 90px;
-	padding-left: 25px;
-	display: block;
-	font-style: normal;
-	font-size: 30px;
-	color: #FFFFFF;
-	transition: all 0.4s ease-in-out 0.1s;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+}
+.split.left{
+	left: 0;
+	background: url(img/hot-pot.jpeg) no-repeat center center/cover;
+}
+.split.left::before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: var(--left-bg-color);
 }
 
-.social i::after{
-	font-size: 48px;
-	padding-left: 20px;
-	padding-top: 80px;
-	margin-left: 85px;
+.split.right{
+	right: 0;
+	background: url(img/barbecue.jpeg) no-repeat center center/cover;
+}
+.split.right::before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: var(--right-bg-color);
 }
 
-.youtube i::before,
-.youtube i::after{
-	content: "\e625";
-}
-.youtube i::after{
-	background-color: #FF0000;
+.split.left,.split.left::before,.split.right,.split.right::before{
+	transition: all var(--speed) ease-in-out;
 }
 
-.twitter i::before,
-.twitter i::after{
-	content: "\e624";
+/* 鼠标移入移除 */
+.hover-left .left{
+	width: var(--hover-width);
 }
-.twitter i::after{
-	background-color: #6dc5dd;
+.hover-left .right{
+	width: var(--other-width);
 }
-
-.linkedin i::before,
-.linkedin i::after{
-	content: "\e629";
-}
-.linkedin i::after{
-	background-color: #6dc993;
+.hover-left .right::before{
+	z-index: 2;
 }
 
-.github i::before,
-.github i::after{
-	content: "\e627";
+.hover-right .left{
+	width: var(--other-width);
 }
-.github i::after{
-	background-color: #6e5494;
+.hover-right .right{
+	width: var(--hover-width);
 }
-
-.tab:hover{
-	width: 450px;
-}
-.tab:hover .social i::before{
-	margin-left: -100px;
-}
-.tab:hover .social i::after{
-	margin-left: -5px;
+.hover-right .left::before{
+	z-index: 2;
 }
 
-@media (max-width:950px) {
-	.container{
-		width: 70%;
+/* btn hover效果*/
+.split.left .button:hover{
+	background-color: var(--left-button-hover-color);
+	border-color: var(--left-button-hover-color);
+}
+.split.right .button:hover{
+	background-color: var(--right-button-hover-color);
+	border-color: var(--right-button-hover-color);
+}
+
+@media (max-width:800px) {
+	h1{
+		font-size: 3rem;
 	}
-	.accordion{
-		display: block;
-		height: auto;
-		min-width: 450px;
-	}
-	.tab{
-		display: block;
-		width: 100%;
-		border-bottom: 3px solid #333333;
-	}
-	.tab .content{
-		width: 85%;
-	}
-	.tab:hover{
-		width: 100%;
+	.button{
+		width: 12rem;
 	}
 }
-
-@media (max-width:680px) {
-	.container{
-		width: 95%;
-	}
-	.accordion{
-		width: 100%;
-		min-width: 300px;
+@media (max-height:700px) {
+	.button{
+		top: 70%;
 	}
 }
