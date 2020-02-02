@@ -1,10 +1,9 @@
 
 ``` bash
-背景模糊切换
-简单的grid布局
-响应式布局
+文字背景动画
 
 重点：
-css模糊
-filter: blur(10px);
+background-clip: text; 使背景图切割多余部分
+color: transparent; 文字透明，让背景图显示
+
 ```
