@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css grid</title>
+	</head>
+	<style type="text/css">
+		.wrapper{
+			display: grid;
+			/* fr:比例 1:2:1 */
+			/* grid-template-columns: 1fr 2fr 1fr; */
+			grid-template-columns: repeat(3,1fr);
+			grid-gap: 1rem;
+			/* 设置高度 */
+			grid-auto-rows: 100px;
+			/* 撑高的行其他元素也会撑高 */
+			grid-auto-rows: minmax(100px,auto);
+		}
+		.wrapper div{
+			background-color: #EEEEEE;
+			padding: 1rem;
+		}
+		/* odd奇数的 子集 */
+		.wrapper div:nth-child(odd){
+			background-color: #DDDDDD;
+		}
+		.nested{
+			display: grid;
+			grid-template-columns: repeat(3,1fr);
+		}
+		.nested div{
+			border: 1px solid #333333;
+			padding: 1rem;
+			grid-auto-rows: 70px;
+		}
+	</style>
+	<body>
+		<div class="wrapper">
+			<div>Lorem ipsum dolor sit amet.</div>
+			<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero praesentium repudiandae distinctio facere suscipit natus quisquam magni in ex debitis quaerat consequatur et assumenda omnis unde inventore quo maiores eos numquam mollitia perspiciatis odit dolorem provident incidunt accusantium sed soluta!</div>
+			<div>Lorem ipsum dolor sit amet.</div>
+			<div>Lorem ipsum dolor sit amet.</div>
+			<div class="nested">
+				<div>Lorem ipsum dolor sit amet.</div>
+				<div>Lorem ipsum dolor sit amet.</div>
+				<div>Lorem ipsum dolor sit amet.</div>
+			</div>
+			<div>Lorem ipsum dolor sit amet.</div>
+			<div>Lorem ipsum dolor sit amet.</div>
+			<div>Lorem ipsum dolor sit amet.</div>
+		</div>
+	</body>
+</html>
