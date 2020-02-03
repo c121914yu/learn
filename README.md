@@ -1,13 +1,23 @@
 
 ``` bash
-css单位
+css网格布局
 
-rem依据html的字体大小计算,为html的n倍
-若不设计html中字体则用浏览器默认字体大小
-2rem = 2*默认字体大小 
-em依据最近的设置了字体大小的父级计算
-如果box设置,则按box计算,若一直没有则为html的大小
+display: grid;
+grid-template-columns: 70% 30%; 设置每个容器的宽占比
+grid-template-columns: 1fr 2fr 1fr;1:2:1
+grid-column-gap: 1rem; 列距
+grid-row-gap: 1rem; 行距
+grid-gap: 1rem; 同时设置
+grid-auto-rows: 100px; 高度
+grid-auto-rows: minmax(100px,auto); 最小高度，超过自动撑高
+justify-items: stretch; 横轴对齐方式
+align-items: stretch; 纵轴对齐方式
 
-vh:将窗口高度分成10份
-vw:将宽度分成100份
+grid-template-areas:   模板
+'header header header'
+'content content sidebar'
+'box-1 box-2 box-2'
+'box-3 box-4 box-4'
+'footer footer footer';
+grid-area: header;
 ```
