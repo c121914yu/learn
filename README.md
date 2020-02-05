@@ -1,5 +1,14 @@
 
 ``` bash
-2ä¸ªä¸‹æ‹‰èœå•
-hoverä¸active
+AxiosÇëÇó
+get
+post
+put/patch
+delete
+ÅúÁ¿ÇëÇó
+×Ô¶¨ÒåÇëÇóÍ·
+error´¦Àí
+ÇëÇóÈ¡Ïû
+ÇëÇóÀ¹½Ø
+ÊµÀı»¯
 ```
