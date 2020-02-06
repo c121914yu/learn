@@ -4,43 +4,85 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Nav Animation</title>
+	<title>美食美客</title>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+	<link href="https://fonts.font.im/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="icon/iconfont.css"/>
 </head>
 <body>
-	<div>
-		<div class="menu-wrap">
-			<div class="icon">
-				<div class="line"></div>
+	<div class="flash">
+		<i class="logo iconfont icon-meishi"></i>
+		<p>美食美客</p>
+	</div>
+	<div class="content">
+		<header class="app-header">
+			<div class="container">
+				<i class="logo iconfont icon-meishi"></i>
+				<p>美食美客</p>
+				<input type="text" class="search" placeholder="搜索...">
 			</div>
-			<div class="menu">
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Connet</a></li>
-					<li><a href="#">Home</a></li>
-				</ul>
+		</header>
+		<div class="subheader">
+			<div>
+				<p>配送信息</p>
+				<p>外卖小哥正向你飞奔而来，点击查看具体信息...</p>
 			</div>
+			<i class="iconfont icon-icon212"></i>
 		</div>
-		<div class="contain">
-			<div class="showcase">
-				<h1>顶部导航栏, 中心展开动画</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta quo dolorum a nihil accusamus quasi fugit tenetur nobis corporis recusandae qui voluptas ex incidunt! Similique dolor dolorem voluptate animi totam.</p>
-				<a href="#" class="btn">阅读更多</a>
+		<div class="grid container">
+			<div class="item">
+				<h4>火锅</h4>
+				<p>没有什么是一顿火锅解决不了的...</p>
+				<i class="hotpot iconfont icon-huoguo"></i>
+			</div>
+			<div class="item">
+				<h4>烧烤</h4>
+				<p>在天愿作比翼鸟，在地就要吃烧烤...</p>
+				<i class="barbecue iconfont icon-_shaokao"></i>
+			</div>
+			<div class="item">
+				<h4>海鲜</h4>
+				<p>甄选全球生鲜，尽享美食盛宴...</p>
+				<i class="seafood iconfont icon-haixian"></i>
+			</div>
+			<div class="item">
+				<h4>快餐</h4>
+				<p>健康美味，无需等待...</p>
+				<i class="fastfood iconfont icon-kuaican"></i>
+			</div>
+			<div class="item">
+				<h4>下午茶</h4>
+				<p>我有下午茶，你有时间吗？</p>
+				<i class="aftetea iconfont icon-cha"></i>
+			</div>
+			<div class="item">
+				<h4>西餐</h4>
+				<p>感受西餐文化，体验异域风情...</p>
+				<i class="westfood iconfont icon-xican"></i>
 			</div>
 		</div>
 	</div>
+	
+	<footer class="app-footer">
+		<ul>
+			<li>
+				<i class="iconfont icon-shoucang"></i>
+				<p>收藏</p>
+			</li>
+			<li>
+				<i class="iconfont icon-che"></i>
+				<p>订单</p>
+			</li>
+			<li>
+				<i class="iconfont icon-wodedangxuan-copy"></i>
+				<p>我的</p>
+			</li>
+			<li>
+				<i class="iconfont icon-icon"></i>
+				<p>附件</p>
+			</li>
+		</ul>
+	</footer>
 </body>
-<script type="text/javascript">
-	var open = false
-	const icon = document.querySelector('.icon')
-	const menu = document.querySelector('.menu-wrap')
-	icon.addEventListener('click',()=>{
-		if(open)
-			menu.classList.remove('open')
-		else
-			menu.classList.add('open')
-		open = !open
-	})
-</script>
 </html>
