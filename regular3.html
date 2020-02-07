@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则匹配规则</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		/*
+			正则表达式有两种基本字符
+			
+			1.原义字符 : a=a 1=1
+			2.元字符 : 有特殊含义的非字母字符 
+				例如：* + ? $ ^ . | \ {} [] @ 
+				\t tab键
+				\v 垂直字表
+				\n 换行
+				\r 回车符
+				\0 空字符
+				\s 空白字符
+				\f 换页符
+		 */
+		
+		/* 
+				量词
+				{n} : 出现n次
+				{n,m} ： 出现n-m次
+				{n,} : 至少出现n次
+				
+				? : 出现0次或1次（最多出现1次）
+				
+				+ : 出现1次或多次（最少出现1次）
+				
+				* : 出现0次或多次 （出现任意次）
+		 */
+		
+		//重复类
+		var str = "21111116"
+		var reg = /1{6}/ //刚好6次否则返回null
+		console.log(str.match(reg))
+		// /1{6}/->111111 /1{5}/->null
+		
+		str = "200000500"
+		reg = /0{2,}/ //至少两次，直到不重复
+		console.log(str.match(reg)) //log 00000
+		
+		str = "211115"
+		reg = /1{1,2}/ //最少1个最多2个
+		console.log(str.match(reg)) //log 11
+		
+		// ? 类似于{0,1}
+		str = "1115"
+		reg = /1?/g //1必须在第一个
+		console.log(str.match(reg))
+		
+		// +
+		str = "20112111"
+		reg = /1+/
+		console.log(reg.test(str))
+		
+		</script>
+	</body>
+</html>

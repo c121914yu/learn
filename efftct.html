@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式作用</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* 
+				作用：简便程序
+				场景：
+				有一个字符串，包含字母和数字，找出所有数字
+			 */
+			function findNumber(){
+				let str = "22gadsgfa33fgasg44hsadg55"
+				let arr = []
+				let temp = ""
+				
+				for(let i=0;i<str.length;i++){
+					let singleStr = str.charAt(i)//获取单个字符
+					if(singleStr>='0' && singleStr<='9')
+						temp += singleStr
+					else if(temp != ""){
+						arr.push(temp)
+						temp = ""
+					}
+					
+					if(i === str.length-1)
+						arr.push(temp)
+				}
+				return arr
+			}
+			console.log(findNumber())
+			
+			/* 正则方式 */
+			function regExp(){
+				let str = "22gadsgfa33fgasg44hsadg55"
+				return str.match(/\d+/g)
+			}
+			console.log(regExp())
+		</script>
+	</body>
+</html>

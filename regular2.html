@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式规则</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				正则表达式有两种基本字符
+				
+				1.原义字符 : a=a 1=1
+				2.元字符 : 有特殊含义的非字母字符 
+					例如：* + ? $ ^ . | \ {} [] @ 
+					\t tab键
+					\v 垂直字表
+					\n 换行
+					\r 回车符
+					\0 空字符
+					\s 空白字符
+					\f 换页符
+			 */
+			
+			/* 
+				字符类
+				使用元字符[]，来构建一个简单的类
+				表达式[abc] 把字符a|b|c归为一类，表达式可以匹配其中的字符
+				
+				字符类取反
+				使用元字符^ 创建反向类（取反）
+				[^abc] 不能有a|b|c
+			 */
+			
+			/* 
+				字符类 - 脱字符
+				[^abc] : 在调用test方法时，会将字符串中所有abc干掉，如果字符串仍有内容则返回true
+			 */
+			var str = "aabbcc"
+			var reg = /[abc]/g
+			//[^abc] 把a|b|c干掉，剩下22返回true
+			console.log(reg.test(str))
+			
+			str = "asfsa234123gfdsa"
+			reg = /[1]/
+			console.log(reg.test(str))
+			
+			/* 
+				字符类 - 连接符（-）
+				[0-9] ：包含0-9为true
+				[^0-9] : 除了0-9还有其他字符时为true
+				常见：
+				[^0-9] : false : 全为数字,true : 除数字还包含其他字符
+				/[^a-z^A-Z]/ 或 /[^a-z]/i : false : 全为字母,true : 除字母还包含其他字符
+			 */
+			str = "2134231432154321"
+			//213423a1432154321->true  2134231432154321->false
+			reg = /[^0-9]/g
+			console.log(reg.test(str))
+			
+			str = "adsgsgfZfss2"
+			reg = /[a-z]/gi
+			console.log(str.match(reg))
+			
+			//匹配字符和数字
+			str = "gfa6s4fg6a4AVf"
+			reg = /[a-z_0-9]/gi 
+			console.log(str.match(reg))
+			reg = /[a-zA-Z_0-9]/g
+			console.log(str.match(reg))
+			
+			//匹配汉字
+			str = "fsad余金隆sfasa"
+			reg = /[\u4E00-\u9FA5]/g
+			console.log(str.match(reg))
+			reg = /[\u4E00-\u9FA5]+/
+			console.log(str.match(reg))
+		</script>
+	</body>
+</html>
+ 

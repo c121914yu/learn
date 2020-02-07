@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>如何使用正则</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/* 
+				How to use regular expression
+				
+				正则中的方法：
+				test():匹配成功返回true，失败返回false
+				
+				exec():计算，匹配上返回数组，失败返回null
+					返回数据：	inputs : 原字符串
+										index : 第一个匹配成功开始的下标，0开始
+							
+			 */
+			
+			var str = "8abcaf_8abfd"
+			//定义正则表达式
+			var reg = /(abc+)/
+			
+			console.log(reg.test(str))
+			console.log(reg.exec(str))
+		</script>
+	</body>
+</html>

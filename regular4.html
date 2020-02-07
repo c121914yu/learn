@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式规则</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+				正则表达式有两种基本字符
+				
+				1.原义字符 : a=a 1=1
+				2.元字符 : 有特殊含义的非字母字符 
+					例如：* + ? $ ^ . | \ {} [] @ 
+					\t tab键
+					\v 垂直字表
+					\n 换行
+					\r 回车符
+					\0 空字符
+					\s 空白字符
+					\f 换页符
+			*/
+			
+			/* 
+					预定义类
+					
+					\d = [0-9] 	包含数字											digital
+					\D = [^0-9]	含非数字
+					
+					\w = [a-zA-Z_0-9]		包含字母数字下划线		word
+					\W = [^a-zA-Z_0-9]	包含非字母数字下划线
+					
+					\s = [\n\t]	含空白符											space
+					\S = [^\n\t] 含非空白格
+			 */
+			
+			console.log(/\d/.test("6541654"))
+			console.log(/\D/.test("6541654"))
+			
+			console.log(/\w/.test("*fdsaa**"))
+			console.log(/\W/.test("sfsa2*"))
+			
+			console.log(/\s/.test("hello word"))
+			console.log(/\S/.test(" "))
+		</script>
+	</body>
+</html>
