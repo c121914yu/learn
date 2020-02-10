@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>canvas</title>
+	</head>
+	<style type="text/css">
+		body{
+			text-align: center;
+			padding: 20px;
+		}
+		canvas{
+			box-shadow: 0 0 10px #b3b5b8;
+			margin: 0 auto;
+		}
+	</style>
+	<body>
+		<canvas id="canvas" width="800" height="600">
+			请升级浏览器
+		</canvas>
+		
+		<script type="text/javascript">
+			let canvas = document.getElementById('canvas')
+			if(canvas.getContext){
+				let ctx = canvas.getContext('2d')
+				
+				let img = new Image()
+				img.src = "../img/hot-pot.jpeg"
+				//图片先加载
+				img.onload = () => {
+					let ptrn = ctx.createPattern(img,'repeat')
+					ctx.fillStyle = ptrn
+					ctx.fillRect(0,0,800,600)
+				}
+			}
+		</script>
+	</body>
+</html>

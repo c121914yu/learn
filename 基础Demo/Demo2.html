@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>循环画圆</title>
+	</head>
+	<style type="text/css">
+		body{
+			text-align: center;
+			padding: 20px;
+		}
+		canvas{
+			box-shadow: 0 0 10px #b3b5b8;
+			margin: 0 auto;
+		}
+	</style>
+	<body>
+		<canvas id="canvas" width="800" height="600">
+			请升级浏览器
+		</canvas>
+		
+		<script type="text/javascript">
+			let canvas = document.getElementById('canvas')
+			if(canvas.getContext){
+				let ctx = canvas.getContext('2d')
+				ctx.lineWidth = 3
+				ctx.strokeStyle = "orange"
+				ctx.fillStyle = "orange"
+				let x = 60
+				let y = 60
+				let radius = 50
+				let start = 0
+				let end = Math.PI
+				let anticlockwise = false
+				
+				for(let a=0;a<4;a++)
+					for(let b=0;b<3;b++){
+						if(a%2)
+							anticlockwise = false
+						else
+							anticlockwise = true
+						ctx.beginPath()
+						ctx.arc(x+150*b,y+130*a,radius,start,end+end/2*b,anticlockwise)
+						
+						if(a>=2)
+							ctx.fill()
+						else
+							ctx.stroke()
+					}
+			}
+		</script>
+	</body>
+</html>

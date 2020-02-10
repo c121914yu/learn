@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>canvas</title>
+	</head>
+	<style type="text/css">
+		body{
+			text-align: center;
+			padding: 20px;
+		}
+		canvas{
+			box-shadow: 0 0 10px #b3b5b8;
+			margin: 0 auto;
+		}
+	</style>
+	<body>
+		<canvas id="canvas" width="800" height="600">
+			请升级浏览器
+		</canvas>
+		
+		<script type="text/javascript">
+			let canvas = document.getElementById('canvas')
+			if(canvas.getContext){
+				let ctx = canvas.getContext('2d')
+				/* 
+					图形的基本元素是路径
+					
+					1 创建起始路径
+					2 使用画图命令画出路径
+					3 把路径闭合
+					4 通过描边或填充绘制
+				 */
+				
+				//画三角形
+				ctx.beginPath()
+				//起始点
+				ctx.moveTo(20,20)
+				//第二个点
+				ctx.lineTo(20,100)
+				//第三个的
+				ctx.lineTo(100,20)
+				// 填充
+				// ctx.fill()
+				//闭合/画线
+				ctx.closePath()
+				ctx.stroke()
+			}
+		</script>
+	</body>
+</html>

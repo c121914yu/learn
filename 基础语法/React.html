@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>矩形</title>
+	</head>
+	<style type="text/css">
+		body{
+			text-align: center;
+			padding: 20px;
+		}
+		canvas{
+			box-shadow: 0 0 10px #b3b5b8;
+			margin: 0 auto;
+		}
+	</style>
+	<body onload="draw()">
+		<canvas id="canvas" width="800" height="600">
+			请升级浏览器
+		</canvas>
+		
+		<script type="text/javascript">
+			function draw(){
+				let canvas = document.getElementById("canvas")
+				if(canvas.getContext){
+					var ctx = canvas.getContext('2d')
+					
+					/* 实心画矩形 */
+					ctx.fillStyle = 'rgba(200,0,0,1)'
+					ctx.fillRect(20,20,150,80)
+					
+					ctx.fillStyle = 'rgba(0,0,200,0.9)'
+					ctx.fillRect(40,40,150,80)
+					
+					/* 空心画矩形 */
+					ctx.strokeStyle = 'rgba(200,0,0,1)'
+					ctx.strokeRect(60,60,150,80)
+					
+					/* 
+						清空矩形区域
+						clearRect(x,y,width,height)
+					*/
+					ctx.fillStyle = 'rgba(0,0,0,1)'
+					ctx.fillRect(500,100,100,100)
+					ctx.clearRect(520,120,60,60)
+					ctx.strokeRect(530,130,40,40)
+				}
+			}
+		</script>
+	</body>
+</html>

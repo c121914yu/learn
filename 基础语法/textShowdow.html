@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>canvas</title>
+	</head>
+	<style type="text/css">
+		body{
+			text-align: center;
+			padding: 20px;
+		}
+		canvas{
+			box-shadow: 0 0 10px #b3b5b8;
+			margin: 0 auto;
+		}
+	</style>
+	<body>
+		<canvas id="canvas" width="800" height="600">
+			请升级浏览器
+		</canvas>
+		
+		<script type="text/javascript">
+			let canvas = document.getElementById('canvas')
+			if(canvas.getContext){
+				let ctx = canvas.getContext('2d')
+				/* 
+					font-weight
+					font-style
+					font-size
+					font-family
+				 */
+				let lingrad = ctx.createLinearGradient(0,0,850,320)
+				lingrad.addColorStop(0,'#66cc7e')
+				lingrad.addColorStop(0.5,'#0c6da9')
+				lingrad.addColorStop(1,'#000')
+				
+				ctx.shadowColor = 'orange'
+				ctx.shadowBlur = 10
+				ctx.shadowOffsetX = 20
+				ctx.shadowOffsetY = 20
+				
+				ctx.font = "bold italic 160px arial"
+				
+				ctx.fillStyle = lingrad
+				ctx.fillText('文字阴影',10,200)
+			}
+		</script>
+	</body>
+</html>

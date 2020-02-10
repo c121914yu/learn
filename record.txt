@@ -1,0 +1,74 @@
+ctx = canvas.getContext('2d') 创建画笔
+
+ctx.fillStyle = 'rgba' 填充颜色 //先填充再画
+ctx.fillRect(x,y,width,height) 画实心矩形
+ctx.strokeStyle = 'rgba'  空心填充
+ctx.strokeRect(x,y,width,height) 空心画矩形
+
+//根据路径画图
+1 创建起始路径
+2 使用画图命令画出路径
+3 把路径闭合
+4 通过描边或填充绘制
+
+ctx.lineWidth = 10 线宽
+ctx.beginPath() 起始路径
+ctx.moveTo(x,y) 起始点
+ctx.lineTo(x,y) 移动到某个点
+ctx.fill() 填充
+ctx.closePath() 自动闭合
+ctx.stroke() 画线
+
+//画圆，
+	默认角度为3点钟方向（angle=0时代表3点钟方向）
+	angle需用Math.PI
+	anticlockwise 默认false顺时针
+ctx.arc(x,y,radius,startAngle,endAngle,anticlockwise) 
+				num,num,num,PI,PI,boolean
+
+//线性渐变
+	ctx.createLinearGradient(x1,y1,x2,y2)
+	lingrad.addColorStop(相对位置(0-1),'颜色')
+//径向渐变
+	ctx.createRadialGradient(x1,y1,r1,x2,y2,r2)
+	
+//加载图片
+ 1 ptrn = ctx.createPattern(img,'repeat')
+	 ctx.fillStyle = ptrn
+	 
+ 2 drawImgage(图片,x,y,width,height,绘制开始x,绘制开始y,绘制width,绘制height)
+	
+
+//渲染文字
+	ctx.font = "weight style size family"
+	ctx.fillText('文本',x,y) / ctx.strokeText('文本',x,y)
+	ctx.strokeStyle = "颜色"
+	ctx.shadowColor = 'orange'
+	ctx.shadowBlur = 10
+	ctx.shadowOffsetX = 20
+	ctx.shadowOffsetY = 20
+	
+//图像混合
+目标图像：画布已存在的图像 destination-
+源图像：需要画的图形 source-
+ctx1.globalCompositeOperation
+	source-over ：源图像覆盖在目标图像上
+	destination-over : 目标图像覆盖在原图像上
+	source-atop : 源图形只显示与目标图像重叠部分（目标图像显示）
+	destination-atop 目标图像只显示与源图像重叠部分（源图形显示）
+	source-in : 只显示源图像与目标图像重叠部分（目标图像不显示）
+	destination-in 只显示目标图像与源图像重叠部分(源图像不显示)
+	source-out : 只显示源图像与目标图像不重叠部分
+	destination-out 只显示目标图像与源图像不重叠部分
+	
+canvas动画原理
+1 绘制图像
+2 清除图像
+3 更新位置
+4 绘制图像
+请求关键帧方法：系统自动计算最优帧时间
+添加回调：window.requestAnimationFrame(自身函数名)
+
+res.save()
+res.restore()
+//save以栈形式存储，先入后出，后入先出
