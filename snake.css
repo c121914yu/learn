@@ -1,0 +1,21 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+body,html{
+	width: 100vw;
+	height: 100vh;
+}
+
+::-webkit-scrollbar {
+   overflow-x:hidden;
+}
+canvas{
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .12), 0 0 7px rgba(0, 0, 0, .04);
+}
