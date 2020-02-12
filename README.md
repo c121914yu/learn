@@ -1,4 +1,4 @@
-#贪吃蛇
+# 贪吃蛇
 
 ``` bash
 主要思路：
@@ -24,12 +24,14 @@
 		5.3 GameOver
 ```
 
-##计算坐标
-###canvas长宽计算
+## 计算坐标
+
+### canvas长宽计算
 ```bash
 	1 根据屏幕大小定义canvas大小
 	2 将canvas平均分成n份，每份长宽30
 ```
+
 ### 起始中心点计算
 ```bash
 	if(canvas.width / 2 % 30 === 0 )
@@ -41,7 +43,8 @@
 	else
 		y = canvas.width / 2
 ```
-###碰撞检测
+
+### 碰撞检测
 ```bash
 	设判断坐标为x,y 目标为dir 直径dia
 	XMax = x + dia
@@ -54,7 +57,7 @@
 		return false
 ```
 
-##按键
+## 按键
 ```bash
 	keyCode : 
 		37 左
