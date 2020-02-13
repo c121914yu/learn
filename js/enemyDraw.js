@@ -33,10 +33,8 @@ function enemyDraw(canvas){
 				return false
 		}
 		this.HeroisHit = () => {
-			if(isHitHero(this,hero)){
-				begining = false
-				alert(userGrad)
-			}
+			if(isHitHero(this,hero))
+				overGame(homecvs)
 		}
 	}
 }
@@ -57,7 +55,7 @@ function isHitHero(obj1,obj2){//判断碰撞
 	const maxX = Math.min(maxX1,maxX2)
 	const maxY = Math.min(maxY1,maxY2)
 	
-	if(minX < maxX-5 && minY < maxY-5)
+	if(minX < maxX && minY < maxY)
 		return true
 	else
 		return false

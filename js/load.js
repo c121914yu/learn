@@ -1,33 +1,47 @@
 var cWidth,cHeight
 var userGrad = 0
-var bgcvs,herocvs,bulletcvs,enemycvs,home
+var bgcvs,herocvs,bulletcvs,enemycvs,homecvs
 var begining = false
 
 var bgImg = ""
 var homeImg = new Array()
 var heroImg = new Array()//0 1 默认状态,2-5 destroy
-var MbulletImg = '' //数组存储子弹
+var MbulletImg = new Array() 
 var enemyImg = new Array()
 
 var Btimer,eTimer
+var sounds = new Array()
 
-var clear = (ctx) => {
+var clear = (canvas) => {
+	const ctx = canvas.getContext('2d')
 	ctx.clearRect(0,0,cWidth,cHeight)
 }
 
+function loadHome(){
+	homeImg = [
+		{name:'start',url:'img/start.jpg'},
+		{name:'pause',url:'img/pause_nor.png'},
+		{name:'resume',url:'img/resume_nor.png'},
+		{name:'gameover',url:'img/gameover.jpg'}
+	]
+	let index = 1
+	homeImg.forEach(item => {
+		loadImg(item.url)
+		.then(res => {
+			index++
+			item.img = res
+			if(index === 5)
+				loadBgImg()
+		})
+	})
+}
 function loadBgImg(){
 	const url = 'img/background.png'
 	loadImg(url)
 	.then(res => {
 		bgImg = res
-		bgDraw(bgcvs)
 		loadHeroImg()
 	})
-	let soundUrl = 'sound/game_music.ogg'
-	loadSound(soundUrl,true,0.7)//加载背景声音
-}
-function loadHome(){
-	// const urls = ['img']
 }
 function loadHeroImg(){
 	const urls = ['img/me1.png','img/me2.png','img/me_destroy_1.png','img/me_destroy_2.png','img/me_destroy_3.png','img/me_destroy_4.png']
@@ -42,11 +56,15 @@ function loadHeroImg(){
 	})
 }
 function loadBulletImg(){
-	const url = "img/bullet2.png"
-	loadImg(url)
-	.then(res => {
-		MbulletImg = res
-		loadEnemyImg()
+	const urls = ["img/bullet1.png","img/bullet2.png"]
+	urls.forEach((item,index) => {
+		loadImg(item)
+		.then(res => {
+			MbulletImg[index] = res
+			if(MbulletImg.length === 2){
+				loadEnemyImg()
+			}
+		})
 	})
 }
 function loadEnemyImg(){
@@ -62,13 +80,8 @@ function loadEnemyImg(){
 			loadImg(url)
 			.then(res => {
 				enemyImg[a][i] = res
-				if(a === urls.length-1 && i === items.length - 1){
-					heroDraw(herocvs)
-					DrawBullet(bulletcvs)
-					enemyDraw(enemycvs)
-					userGrad = 0
-					begining = true
-				}
+				if(a === urls.length-1 && i === items.length - 1)
+					startDraw(homecvs)
 			})
 		})
 	})
@@ -84,18 +97,63 @@ async function loadImg(url){
 	}) 
 }
 
-function loadSound(url,loop,volume=1){
-	let sound = new Audio(url)
-	sound.volume = volume
-	sound.loop = loop
-	// sound.play()
+//加载背景声音
+function loadSound(){
+	sounds = [
+		{name:'bgGame',url:'sound/game_music.ogg',volume:0.7,loop:true},
+		{name:'bullet',url:'sound/get_bullet.wav',volume:1,loop:false},
+	]
+	sounds.forEach(item => {
+		const sound = new Audio(item.url)
+		sound.volume = item.volume
+		sound.loop = item.loop
+		item.audio = sound
+	})
+}
+
+//开始游戏
+function startGame(){
+	bg.move = true
+	bg.Move()
+	const bgsound = sounds.find((item,index) => {
+		return item.name === "bgGame"
+	})
+	bgsound.audio.play()
+	homecvs.style.display = 'none'
+	heroDraw(herocvs)
+	DrawBullet(bulletcvs)
+	enemyDraw(enemycvs)
+	home.ontouchend = ""
+	userGrad = 0
+	begining = true
+}
+
+//结束游戏
+function overGame(){
+	begining = false
+	bg.move = false
+	clearInterval(Btimer)
+	clearInterval(eTimer)
+	
+	overDraw()
+	homecvs.style.display = 'block'
+	Mbullets = new Array()
+	enemys = new Array()
+	clear(herocvs)
+	clear(bulletcvs)
+	clear(enemycvs)
+	
+	const bgsound = sounds.find((item,index) => {
+		return item.name === "bgGame"
+	})
+	bgsound.audio.pause()
 }
 
 function onLoad(){
 	canvasSize()//设置画布尺寸
-	
+	loadSound()
 	if(bgcvs.getContext){
-		loadBgImg()
+		loadHome()//加载图片
 		/* 刷新界面 */
 		loop()
 		let heroIndex = 0
@@ -109,7 +167,7 @@ function onLoad(){
 					hero.bool = hero.bool ? 0 : 1
 				}
 				/* 子弹移动 */
-				clear(bulletcvs.getContext('2d'))
+				clear(bulletcvs)
 				for(let i=0;i<Mbullets.length;i++){
 					if(Mbullets[i].move())
 						Mbullets.splice(i,1)
@@ -117,7 +175,7 @@ function onLoad(){
 						Mbullets[i].draw()
 				}
 				/* 敌机移动 */
-				clear(enemycvs.getContext('2d'))
+				clear(enemycvs)
 				for(let i=0;i<enemys.length;i++){
 					if(enemys[i].move())
 						enemys.splice(i,1)
@@ -135,7 +193,7 @@ function canvasSize(){
 	herocvs = document.getElementById('hero')
 	bulletcvs = document.getElementById('bullet')
 	enemycvs = document.getElementById('enemy')
-	home = document.getElementById('home')
+	homecvs = document.getElementById('home')
 	
 	cWidth = window.screen.width
 	cHeight = window.screen.height
@@ -149,6 +207,6 @@ function canvasSize(){
 	bulletcvs.height = cHeight
 	enemycvs.width = cWidth
 	enemycvs.height = cHeight
-	home.width = cWidth
-	home.height = cHeight
+	homecvs.width = cWidth
+	homecvs.height = cHeight
 }

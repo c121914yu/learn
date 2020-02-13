@@ -3,7 +3,10 @@ function DrawBullet(canvas){
 	newBullet()
 	Btimer = setInterval(() => {
 		newBullet()
-		loadSound("sound/get_bullet.wav",false)
+		const sound = sounds.find(item => {
+			return item.name === "bullet"
+		})
+		sound.audio.play()
 	},200)
 	
 	function newBullet(){
@@ -23,8 +26,8 @@ function DrawBullet(canvas){
 		this.y = hero.y - this.height/2
 		
 		this.draw = () => {
-			ctx.drawImage(MbulletImg,this.x1,this.y,this.width,this.height)
-			ctx.drawImage(MbulletImg,this.x2,this.y,this.width,this.height)
+			ctx.drawImage(MbulletImg[0],this.x1,this.y,this.width,this.height)
+			ctx.drawImage(MbulletImg[0],this.x2,this.y,this.width,this.height)
 		}
 		this.move = () => {
 			this.y -= this.speed

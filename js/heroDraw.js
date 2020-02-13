@@ -21,7 +21,7 @@ function heroDraw(canvas){
 		ctx.beginPath()
 		
 		this.draw = function(x,y){
-			clear(ctx)
+			clear(herocvs)
 			ctx.drawImage(heroImg[this.bool],x,y,this.width,this.height)
 		}
 		
