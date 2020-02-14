@@ -15,7 +15,8 @@ function bgDraw(canvas){
 			y += 2
 			if(y > cHeight)
 				y = 0
-			window.requestAnimationFrame(this.Move)
 		}
+		window.requestAnimationFrame(this.Move)
 	}
+	this.Move()
 }

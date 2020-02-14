@@ -1,37 +1,12 @@
-var cWidth,cHeight
-var userGrad = 0
-var bgcvs,herocvs,bulletcvs,enemycvs,homecvs
-var begining = false
-
-var bgImg = ""
-var homeImg = new Array()
-var heroImg = new Array()//0 1 默认状态,2-5 destroy
-var MbulletImg = new Array() 
-var enemyImg = new Array()
-
-var Btimer,eTimer
-var sounds = new Array()
-
-var clear = (canvas) => {
-	const ctx = canvas.getContext('2d')
-	ctx.clearRect(0,0,cWidth,cHeight)
-}
-
 function loadHome(){
 	homeImg = [
 		{name:'start',url:'img/start.jpg'},
-		{name:'pause',url:'img/pause_nor.png'},
-		{name:'resume',url:'img/resume_nor.png'},
 		{name:'gameover',url:'img/gameover.jpg'}
 	]
-	let index = 1
 	homeImg.forEach(item => {
 		loadImg(item.url)
 		.then(res => {
-			index++
 			item.img = res
-			if(index === 5)
-				loadBgImg()
 		})
 	})
 }
@@ -40,18 +15,37 @@ function loadBgImg(){
 	loadImg(url)
 	.then(res => {
 		bgImg = res
-		loadHeroImg()
 	})
 }
 function loadHeroImg(){
-	const urls = ['img/me1.png','img/me2.png','img/me_destroy_1.png','img/me_destroy_2.png','img/me_destroy_3.png','img/me_destroy_4.png']
-	/* 加载图片,加载完成再绘制 */
-	urls.forEach((url,index) => {
-		loadImg(url)
+	heroImg = [
+		{name:'me1',url:'img/me1.png'},
+		{name:'me2',url:'img/me2.png'},
+		{name:'me_destroy_1',url:'img/me_destroy_1.png'},
+		{name:'me_destroy_2',url:'img/me_destroy_2.png'},
+		{name:'me_destroy_3',url:'img/me_destroy_3.png'},
+		{name:'me_destroy_4',url:'img/me_destroy_4.png'},
+		{name:'life',url:'img/life.png'},
+		{name:'bomb',url:'img/bomb.png'},
+		{name:'pause',url:'img/pause.png'},
+		{name:'resume',url:'img/resume.png'},
+	]
+	heroImg.forEach(item => {
+		loadImg(item.url)
 		.then(res => {
-			heroImg[index] = res
-			if(index === urls.length-1)
-				loadBulletImg()
+			item.img = res
+		})
+	})
+}
+function loadPropImg(){
+	PropImg = [
+		{name:'bomb_supply',url:'img/bomb_supply.png'},
+		{name:'bullet_supply',url:'img/bullet_supply.png'},
+	]
+	PropImg.forEach(item => {
+		loadImg(item.url)
+		.then(res => {
+			item.img = res
 		})
 	})
 }
@@ -61,18 +55,15 @@ function loadBulletImg(){
 		loadImg(item)
 		.then(res => {
 			MbulletImg[index] = res
-			if(MbulletImg.length === 2){
-				loadEnemyImg()
-			}
 		})
 	})
 }
 function loadEnemyImg(){
 	const urls = [
 		['img/enemy1.png','img/enemy1_down1.png','img/enemy1_down2.png','img/enemy1_down3.png','img/enemy1_down4.png'],
-		['img/enemy2.png','img/enemy2_down1.png','img/enemy2_down2.png','img/enemy2_down3.png','img/enemy2_down4.png','img/enemy2_hit.png'],
-		['img/enemy3.png','img/enemy3_down1.png','img/enemy3_down2.png','img/enemy3_down3.png','img/enemy3_down4.png','img/enemy3_down5.png','img/enemy3_down6.png','img/enemy3_hit.png']
-	]
+		['img/enemy2.png','img/enemy2_hit.png','img/enemy2_down1.png','img/enemy2_down2.png','img/enemy2_down3.png','img/enemy2_down4.png'],
+		['img/enemy3.png','img/enemy3_hit.png','img/enemy3_down1.png','img/enemy3_down2.png','img/enemy3_down3.png','img/enemy3_down4.png','img/enemy3_down5.png','img/enemy3_down6.png']
+	] 
 	const names = ['enemy1','enemy2','enemy3']
 	urls.forEach((items,a) => {
 		enemyImg[a] = new Array()
@@ -80,8 +71,6 @@ function loadEnemyImg(){
 			loadImg(url)
 			.then(res => {
 				enemyImg[a][i] = res
-				if(a === urls.length-1 && i === items.length - 1)
-					startDraw(homecvs)
 			})
 		})
 	})
@@ -92,16 +81,34 @@ async function loadImg(url){
 		let img = new Image()
 		img.src = url
 		img.onload = () => {
+			imgIndex++
 			res(img)
+			if(imgIndex === 36)
+				startDraw(homecvs)
 		}
 	}) 
 }
+function getImg(imgs,name){
+	const img = imgs.find(item => {
+		return item.name === name
+	})
+	return img.img
+}
 
-//加载背景声音
+//加载声音
 function loadSound(){
 	sounds = [
-		{name:'bgGame',url:'sound/game_music.ogg',volume:0.7,loop:true},
-		{name:'bullet',url:'sound/get_bullet.wav',volume:1,loop:false},
+		{name:'bgGame',url:'sound/game_music.ogg',volume:0.3,loop:true},
+		{name:'button',url:'sound/button.wav',volume:0.9,loop:false},
+		{name:'me_down',url:'sound/me_down.wav',volume:1,loop:false},
+		{name:'bullet',url:'sound/bullet.wav',volume:1,loop:false},
+		{name:'use_bomb',url:'sound/use_bomb.wav',volume:1,loop:false},
+		{name:'enemy1_down',url:'sound/enemy1_down.wav',volume:1,loop:false},
+		{name:'enemy2_down',url:'sound/enemy2_down.wav',volume:1,loop:false},
+		{name:'enemy3_down',url:'sound/enemy3_down.wav',volume:1,loop:false},
+		{name:'enemy3_flying',url:'sound/enemy3_flying.wav',volume:0.5,loop:false},
+		{name:'get_bomb',url:'sound/get_bomb.wav',volume:0.5,loop:false},
+		{name:'get_bullet',url:'sound/get_bullet',volume:0.5,loop:false},
 	]
 	sounds.forEach(item => {
 		const sound = new Audio(item.url)
@@ -110,82 +117,80 @@ function loadSound(){
 		item.audio = sound
 	})
 }
-
-//开始游戏
-function startGame(){
-	bg.move = true
-	bg.Move()
-	const bgsound = sounds.find((item,index) => {
-		return item.name === "bgGame"
+function getSound(name){
+	const sound = sounds.find(item => {
+		return item.name === name
 	})
-	bgsound.audio.play()
-	homecvs.style.display = 'none'
-	heroDraw(herocvs)
-	DrawBullet(bulletcvs)
-	enemyDraw(enemycvs)
-	home.ontouchend = ""
-	userGrad = 0
-	begining = true
+	return sound.audio
 }
 
-//结束游戏
-function overGame(){
-	begining = false
-	bg.move = false
-	clearInterval(Btimer)
-	clearInterval(eTimer)
-	
-	overDraw()
-	homecvs.style.display = 'block'
-	Mbullets = new Array()
-	enemys = new Array()
-	clear(herocvs)
-	clear(bulletcvs)
-	clear(enemycvs)
-	
-	const bgsound = sounds.find((item,index) => {
-		return item.name === "bgGame"
-	})
-	bgsound.audio.pause()
-}
 
 function onLoad(){
+	imgIndex = 0
 	canvasSize()//设置画布尺寸
-	loadSound()
 	if(bgcvs.getContext){
-		loadHome()//加载图片
+		loadAll()
 		/* 刷新界面 */
-		loop()
-		let heroIndex = 0
-		function loop(){
-			if(begining){//保证已加载完成
-				hero.draw(hero.x,hero.y) //绘制主角
-				hero.move()
-				heroIndex++
-				if(heroIndex === 10){
-					heroIndex = 0
-					hero.bool = hero.bool ? 0 : 1
-				}
-				/* 子弹移动 */
-				clear(bulletcvs)
-				for(let i=0;i<Mbullets.length;i++){
-					if(Mbullets[i].move())
-						Mbullets.splice(i,1)
-					else
-						Mbullets[i].draw()
-				}
-				/* 敌机移动 */
-				clear(enemycvs)
-				for(let i=0;i<enemys.length;i++){
-					if(enemys[i].move())
-						enemys.splice(i,1)
-					enemys[i].draw()
-					enemys[i].HeroisHit()
-				}
+		running()
+	}
+}
+
+var heroIndex = 0
+function running(){
+	if(begining){//保证已加载完成
+		hero.move()
+		heroIndex++
+		if(heroIndex === 10){
+			heroIndex = 0
+			hero.bool = hero.bool ? 0 : 1
+		} 
+		hero.draw() //绘制主角
+		/* 子弹移动 */
+		clear(bulletcvs)
+		for(let i=0;i<Mbullets.length;i++){
+			if(Mbullets[i].move())
+				Mbullets.splice(i,1)
+			else
+				Mbullets[i].draw()
+		}
+		/* 敌机移动 */
+		clear(enemycvs)
+		for(let i=0;i<enemys.length;i++){
+			let splice = false
+			splice = enemys[i].move()
+			if(splice === false){
+				splice = enemys[i].draw()
+				if(enemys[i].HeroisHit())
+					break
 			}
-			window.requestAnimationFrame(loop)
+			if(splice){
+				enemys.splice(i,1) //防止清楚数组后,下标错位
+				i--
+			}
+		}
+		/* 加载道具 */
+		clear(propcvs)
+		for(let i=0;i<props.length;i++){
+			if(props[i].move())
+				props[i].draw()
+			else{
+				props.splice(i,1)
+				i--
+			}
 		}
 	}
+	window.requestAnimationFrame(running)
+}
+
+function loadAll(){
+	loadSound()//加载音频
+	
+	loadHome()//加载图片
+	loadBgImg()
+	loadHeroImg()
+	loadPropImg()
+	loadBulletImg()
+	loadEnemyImg()
 }
 
 function canvasSize(){
@@ -194,6 +199,7 @@ function canvasSize(){
 	bulletcvs = document.getElementById('bullet')
 	enemycvs = document.getElementById('enemy')
 	homecvs = document.getElementById('home')
+	propcvs = document.getElementById('prop')
 	
 	cWidth = window.screen.width
 	cHeight = window.screen.height
@@ -209,4 +215,6 @@ function canvasSize(){
 	enemycvs.height = cHeight
 	homecvs.width = cWidth
 	homecvs.height = cHeight
+	propcvs.width = cWidth
+	propcvs.height = cHeight
 }

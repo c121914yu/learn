@@ -6,7 +6,7 @@ function startDraw(canvas){
 	/* 绘制飞机 */
 	const heroX = cWidth/2 - 33
 	const heroY = cHeight/2- 91 - 82
-	ctx.drawImage(heroImg[0],heroX,heroY,66,82)
+	ctx.drawImage(heroImg[0].img,heroX,heroY,66,82)
 	/* 绘制文字 */
 	const fontSize = 45
 	const fX = cWidth/2-90
@@ -36,6 +36,7 @@ function startDraw(canvas){
 		const maxY = cHeight/2 + 50
 		
 		if(x > minX && x <maxX && y > minY && y <maxY){
+			getSound('button').play()
 			clear(canvas)
 			startGame()
 		}
@@ -53,16 +54,14 @@ function overDraw(){
 	const ctx = homecvs.getContext('2d')
 	ctx.beginPath()
 	ctx.fillStyle = "#6d7779"
-	const img = homeImg.find(item => {
-		return item.name === "gameover"
-	})
+	const img = getImg(homeImg,"gameover")
 	
 	/* 图片 */
 	const imgX = cWidth*0.1
 	const imgW = cWidth*0.8
 	const imgH = imgW*2/3
 	const imgY = cHeight/2 - imgH/2
-	ctx.drawImage(img.img,imgX,imgY,imgW,imgH)
+	ctx.drawImage(img,imgX,imgY,imgW,imgH)
 	
 	/*  历史最高 */
 	const highX = cWidth/2 - 80
@@ -110,6 +109,7 @@ function overDraw(){
 		const minY2 = upY - 25
 		const maxY2 = upY + 10
 		if(x > minX1 && x <maxX1 && y > minY1 && y <maxY1){
+			getSound('button').play()
 			clear(homecvs)
 			startGame()
 		}

@@ -1,13 +1,13 @@
 var Mbullets = new Array()
+var getBTime = 300
+var Bspeed = 15
 function DrawBullet(canvas){
 	newBullet()
+	const sound = getSound('bullet')
 	Btimer = setInterval(() => {
 		newBullet()
-		const sound = sounds.find(item => {
-			return item.name === "bullet"
-		})
-		sound.audio.play()
-	},200)
+		sound.play()
+	},getBTime)
 	
 	function newBullet(){
 		let Mbullet = new Bullet()
@@ -19,54 +19,32 @@ function DrawBullet(canvas){
 		const ctx = canvas.getContext('2d')
 		this.height = 20
 		this.width = 6
-		this.speed = 8
+		this.speed = Bspeed
+		this.mode = 1 //子弹1,子弹2
 		
 		this.x1 = hero.x + hero.width/5 - this.width/2
 		this.x2 = hero.x + hero.width/5*4 - this.width/2 + 1
 		this.y = hero.y - this.height/2
 		
 		this.draw = () => {
-			ctx.drawImage(MbulletImg[0],this.x1,this.y,this.width,this.height)
-			ctx.drawImage(MbulletImg[0],this.x2,this.y,this.width,this.height)
+			ctx.drawImage(MbulletImg[this.mode-1],this.x1,this.y,this.width,this.height)
+			ctx.drawImage(MbulletImg[this.mode-1],this.x2,this.y,this.width,this.height)
 		}
 		this.move = () => {
 			this.y -= this.speed
 			if(this.y < -this.height)
 				return true
 			for(let i=0;i<enemys.length;i++){
-				if(isHit(enemys[i],this)){
-					enemys[i].life--
-					if(enemys[i].life === 0){
-						userGrad += enemys[i].grad
-						enemys.splice(i,1)
-					}
+				if(enemys[i].life > 0 && isHit(enemys[i],this,hero.width)){
+					enemys[i].isHit = true
+					enemys[i].life -= this.mode
+					if(enemys[i].life === 0)
+						enemyDown(i)
 					return true
 				}
 			}
 			return false
 		}
 	}
-}
-
-function isHit(obj1,obj2){
-	const minX1 = obj1.x
-	const minY1 = obj1.y
-	const maxX1 = minX1 + obj1.width
-	const maxY1 = minY1 + obj1.height
-	
-	const minX2 = obj2.x1
-	const minY2 = obj2.y
-	const maxX2 = minX2 + hero.width - obj2.width
-	const maxY2 = minY2 + obj2.height
-	
-	const minX = Math.max(minX1,minX2)
-	const minY = Math.max(minY1,minY2)
-	const maxX = Math.min(maxX1,maxX2)
-	const maxY = Math.min(maxY1,maxY2)
-	
-	if(minX < maxX && minY < maxY)
-		return true
-	else
-		return false
 }
 	
