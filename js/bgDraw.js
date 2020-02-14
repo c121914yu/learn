@@ -1,4 +1,5 @@
 var bg
+var bgSpeed = 2
 function bgDraw(canvas){
 	this.move = false
 	let ctx = canvas.getContext('2d')
@@ -12,7 +13,7 @@ function bgDraw(canvas){
 			clear(bgcvs)
 			ctx.drawImage(bgImg,x,y,cWidth,cHeight)
 			ctx.drawImage(bgImg,x,y-cHeight,cWidth,cHeight)
-			y += 2
+			y += bgSpeed
 			if(y > cHeight)
 				y = 0
 		}

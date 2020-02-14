@@ -9,6 +9,7 @@ function heroDraw(canvas){
 		this.beginY = cHeight - this.height - 20
 		this.x = this.beginX
 		this.y = this.beginY
+		this.speed = 4
 		this.bool = 0 //记录飞机状态,1 2图来回切换 
 		this.destroyTimes = 4
 		this.bomb = new Object()
@@ -36,8 +37,8 @@ function heroDraw(canvas){
 			ctx.drawImage(heroImg[this.bool].img,this.x,this.y,this.width,this.height)
 		}
 		this.destroy = () => {
-			this.move = () => false
 			getSound('me_down').play()
+			this.move = () => false
 			if(this.ImgDelay-- === 0){
 				this.ImgDelay = 5
 				this.destroyTimes--
@@ -52,8 +53,24 @@ function heroDraw(canvas){
 			return 'down'
 		}
 		this.getBomb = () => {
-			this.bombAmount++
 			getSound('get_bomb').play()
+			this.bombAmount++
+		}
+		this.getBullet = () => {
+			getSound('get_bullet').play()
+			if(heroProp > 2){
+				let i = 0
+				if(Rand(0.7))
+					i = 1
+				propCen[i].prop()
+				console.log(propCen[i].log)
+			}
+			else{
+				propCen[heroProp].prop()
+				console.log(propCen[heroProp].log)
+			}
+			heroProp++
+			console.log(Binfo)
 		}
 		
 		/* 移动位置记录 */
@@ -64,7 +81,7 @@ function heroDraw(canvas){
 		
 		/* 移动判断 */
 		this.move = ()=> {
-			const speedX = 4
+			const speedX = this.speed
 			const speedY = speedX+1
 			if(this.left && this.x > 1 && this.x > (moveX-this.width)){
 				this.x -= speedX
@@ -116,7 +133,7 @@ function heroDraw(canvas){
 		/* 移动端事件 */
 		herocvs.ontouchstart = () => {
 			let e = event || window.event
-			if(isClick(this.bomb,e)){
+			if(isClick(this.bomb,e) && this.bombAmount > 0){
 				this.bombAmount--
 				getSound('use_bomb').play()
 				enemys.forEach((item,i) => {
@@ -125,7 +142,7 @@ function heroDraw(canvas){
 			}
 			else if(isClick(this.pr,e)){
 				if(begining)
-					pauseGame()
+					pauseGame(true)
 				else
 					resumeGame()
 			}

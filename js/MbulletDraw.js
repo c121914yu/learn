@@ -1,13 +1,18 @@
 var Mbullets = new Array()
-var getBTime = 300
-var Bspeed = 15
+var Binfo = {
+	offectX : 0,
+	width : 6,
+	getBTime : 300,
+	speed : 10,
+	mode : 1
+}
 function DrawBullet(canvas){
 	newBullet()
 	const sound = getSound('bullet')
 	Btimer = setInterval(() => {
 		newBullet()
 		sound.play()
-	},getBTime)
+	},Binfo.getBTime)
 	
 	function newBullet(){
 		let Mbullet = new Bullet()
@@ -18,13 +23,13 @@ function DrawBullet(canvas){
 	function Bullet(i){
 		const ctx = canvas.getContext('2d')
 		this.height = 20
-		this.width = 6
-		this.speed = Bspeed
-		this.mode = 1 //子弹1,子弹2
-		
-		this.x1 = hero.x + hero.width/5 - this.width/2
-		this.x2 = hero.x + hero.width/5*4 - this.width/2 + 1
-		this.y = hero.y - this.height/2
+		this.width = Binfo.width
+		this.speed = Binfo.speed
+		this.mode = Binfo.mode //子弹1,子弹2
+		this.x1 = hero.x + 10 - Binfo.offectX
+		this.x2 = hero.x + hero.width - 10 + Binfo.offectX
+		this.y = hero.y
+		this.more = this.x2 - this.x1 + this.width
 		
 		this.draw = () => {
 			ctx.drawImage(MbulletImg[this.mode-1],this.x1,this.y,this.width,this.height)
@@ -35,7 +40,7 @@ function DrawBullet(canvas){
 			if(this.y < -this.height)
 				return true
 			for(let i=0;i<enemys.length;i++){
-				if(enemys[i].life > 0 && isHit(enemys[i],this,hero.width)){
+				if(enemys[i].life > 0 && isHit(enemys[i],this,this.more,5)){
 					enemys[i].isHit = true
 					enemys[i].life -= this.mode
 					if(enemys[i].life === 0)

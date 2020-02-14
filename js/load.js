@@ -108,7 +108,7 @@ function loadSound(){
 		{name:'enemy3_down',url:'sound/enemy3_down.wav',volume:1,loop:false},
 		{name:'enemy3_flying',url:'sound/enemy3_flying.wav',volume:0.5,loop:false},
 		{name:'get_bomb',url:'sound/get_bomb.wav',volume:0.5,loop:false},
-		{name:'get_bullet',url:'sound/get_bullet',volume:0.5,loop:false},
+		{name:'get_bullet',url:'sound/get_bullet.wav',volume:0.5,loop:false},
 	]
 	sounds.forEach(item => {
 		const sound = new Audio(item.url)

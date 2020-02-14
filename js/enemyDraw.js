@@ -1,5 +1,11 @@
 var enemys = new Array()
-var newEnemySpeed = 700
+var Einfo = {
+	speed : 1,
+	newEnemySpeed : 700,
+	mulGrad : 0,
+	rand1 : 0.7,
+	rand2 : 0.9
+}
 function enemyDraw(canvas){
 	eTimer = setInterval(() => {
 		if(enemys.length < 30){
@@ -7,12 +13,9 @@ function enemyDraw(canvas){
 			const enemy = new Enemy(index)
 			enemys.push(enemy)
 			enemy.draw()
-			if(index === 2)
-				setTimeout(() => {
-					getSound('enemy3_flying').play()
-				},200)
+			getSound('enemy3_flying').play()
 		}
-	},newEnemySpeed)
+	},Einfo.newEnemySpeed)
 	
 	const ctx = canvas.getContext('2d')
 	ctx.globalCompositeOperation = "source-over"
@@ -22,12 +25,11 @@ function enemyDraw(canvas){
 		this.width = info.width
 		this.height = info.height
 		this.life = info.life
-		this.grad = info.grad
+		this.grad = info.grad + Einfo.mulGrad
 		this.downTimes = info.downTimes
 		this.downSound = info.downSound
 		this.x = getRandX(this.width)
 		this.y = -this.height
-		this.speed = 1
 		this.isHit = false
 		this.ImgDelay = 3 //延迟一定碰撞动画时间
 		
@@ -66,13 +68,15 @@ function enemyDraw(canvas){
 			if(this.y >= cHeight)
 				return true
 			else{
-				this.y += this.speed
+				this.y += Einfo.speed
 				return false
 			}
 		}
 		this.HeroisHit = () => {
-			if(isHitHero(this,hero)){
-				hero.draw = () => {hero.destroy()}
+			if(isHit(this,hero)){
+				hero.draw = () => {
+					hero.destroy()
+				}
 				enemys.forEach((item,i) => {
 					enemyDown(i,false,false)
 				})
@@ -99,28 +103,6 @@ function enemyDown(i,addGrad=true,sound=true){
 		userGrad += enemys[i].grad
 		SetGameInfo(enemys[i].grad)
 	}
-}
-
-function isHitHero(obj1,obj2){//判断碰撞
-	const minX1 = obj1.x
-	const minY1 = obj1.y
-	const maxX1 = minX1 + obj1.width
-	const maxY1 = minY1 + obj1.height
-	
-	const minX2 = obj2.x
-	const minY2 = obj2.y
-	const maxX2 = minX2 + obj2.width
-	const maxY2 = minY2 + obj2.height
-	
-	const minX = Math.max(minX1,minX2)
-	const minY = Math.max(minY1,minY2)
-	const maxX = Math.min(maxX1,maxX2)
-	const maxY = Math.min(maxY1,maxY2)
-	
-	if(minX < maxX && minY < maxY)
-		return true
-	else
-		return false
 }
 
 function objEnemy(i){//敌机信息
@@ -155,13 +137,38 @@ function objEnemy(i){//敌机信息
 	}
 }
 
+var EnemyProp = [
+	{name:'SetRand',log:"敌机出现概率改变",prop:()=>{Einfo.rand1-=0.05;Einfo.rand2-=0.05}},
+	{name:'amountMore',log:"敌机数量少量增加",prop:()=>{Einfo.newEnemySpeed-=50}},
+	{name:'faster',log:"敌机速度增加",prop:()=>{Einfo.speed+=0.5;bgSpeed+=0.5}},
+	{name:'amountMore',log:"敌机数量大量增加",prop:()=>{Einfo.newEnemySpeed-=80}},
+]
+function enemyHigh(){
+	if(enemyProp > 2){
+		let i = 0
+		if(Rand(0.4))
+			i = 4
+		else if(Rand(0.3))
+			i = 2
+		EnemyProp[i].prop()
+		console.log(EnemyProp[i].log)
+	}
+	else{
+		EnemyProp[enemyProp].prop()
+		console.log(EnemyProp[enemyProp].log)
+	}
+	enemyProp++
+	Einfo.mulGrad +=enemyProp
+	console.log(Einfo)
+}
+
 function getRandNum(){//随机获取敌机
 	//出现概率设置
 	const rand = Math.random()
-	if(rand < 0.6)
+	if(rand < Einfo.rand1)
 		return 0
-	else if(rand < 0.85)
+	else if(rand < Einfo.rand2)
 		return 1
-	else if(rand <= 1)
+	else
 		return 2
 }

@@ -40,15 +40,22 @@ function overGame(){
 	clear(herocvs)
 	clear(bulletcvs)
 	clear(enemycvs)
+	getSound('bgGame').pause()
 }
 
 //暂停
-function pauseGame(){
+function pauseGame(draw=false){
 	begining = false
 	bg.move = false
 	clearInterval(Btimer)
 	clearInterval(eTimer)
-	getSound('bgGame').pause()
+	//再画一次hero
+	if(draw){
+		hero.draw()
+		sounds.forEach((item) => {
+			item.audio.pause()
+		})
+	}
 }
 //resume
 function resumeGame(){
@@ -83,13 +90,13 @@ function isClick(dir,e){
 		return false
 }
 //判断碰撞
-function isHit(obj1,obj2,more=0){
+function isHit(obj1,obj2,more=0,less=0){
 	const minX1 = obj1.x
 	const minY1 = obj1.y
 	const maxX1 = minX1 + obj1.width
 	const maxY1 = minY1 + obj1.height
 	
-	const minX2 = obj2.x || obj2.x1
+	const minX2 = (obj2.x || obj2.x1) - less
 	const minY2 = obj2.y
 	const maxX2 = minX2 + obj2.width + more
 	const maxY2 = minY2 + obj2.height
