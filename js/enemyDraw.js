@@ -157,8 +157,8 @@ var EnemyProp = [
 	}},
 	{name:'faster',
 		prop:()=>{
-			Einfo.speed += 1;
-			bgSpeed += 1
+			Einfo.speed += 0.5
+			bgSpeed += 0.5
 	}},
 	{name:'amountMore',
 		prop:()=>{

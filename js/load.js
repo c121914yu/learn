@@ -79,7 +79,7 @@ function loadEnemyImg(){
 async function loadImg(url){
 	return new Promise((res,rej) => {
 		let img = new Image()
-		img.src = url
+		img.src = 'http://jinlongyuchitang.cn/game/airplane/' + url
 		img.onload = () => {
 			imgIndex++
 			res(img)
@@ -101,20 +101,21 @@ function getImg(imgs,name){
 //加载声音
 function loadSound(){
 	sounds = [
-		{name:'bgGame',url:'sound/game_music.ogg',volume:0.5,loop:true},
-		{name:'button',url:'sound/button.wav',volume:0.9,loop:false},
-		{name:'me_down',url:'sound/me_down.wav',volume:1,loop:false},
-		{name:'bullet',url:'sound/bullet.wav',volume:1,loop:false},
-		{name:'use_bomb',url:'sound/use_bomb.wav',volume:1,loop:false},
-		{name:'enemy1_down',url:'sound/enemy1_down.wav',volume:1,loop:false},
-		{name:'enemy2_down',url:'sound/enemy2_down.wav',volume:1,loop:false},
-		{name:'enemy3_down',url:'sound/enemy3_down.wav',volume:1,loop:false},
-		{name:'enemy3_flying',url:'sound/enemy3_flying.wav',volume:0.5,loop:false},
-		{name:'get_bomb',url:'sound/get_bomb.wav',volume:1,loop:false},
-		{name:'get_bullet',url:'sound/get_bullet.wav',volume:1,loop:false},
+		{name:'bgGame',url:'sound/game_music.mp3',volume:0.7,loop:true},
+		{name:'button',url:'sound/button.mp3',volume:0.9,loop:false},
+		{name:'me_down',url:'sound/me_down.mp3',volume:1,loop:false},
+		{name:'bullet',url:'sound/bullet.mp3',volume:0.8,loop:false},
+		{name:'use_bomb',url:'sound/use_bomb.mp3',volume:1,loop:false},
+		{name:'enemy1_down',url:'sound/enemy1_down.mp3',volume:1,loop:false},
+		{name:'enemy2_down',url:'sound/enemy2_down.mp3',volume:1,loop:false},
+		{name:'enemy3_down',url:'sound/enemy3_down.mp3',volume:1,loop:false},
+		{name:'enemy3_flying',url:'sound/enemy3_flying.mp3',volume:0.5,loop:false},
+		{name:'get_bomb',url:'sound/get_bomb.mp3',volume:1,loop:false},
+		{name:'get_bullet',url:'sound/get_bullet.mp3',volume:1,loop:false},
 	]
 	sounds.forEach(item => {
-		const sound = new Audio(item.url)
+		const url = 'http://jinlongyuchitang.cn/game/airplane/' + item.url
+		const sound = new Audio(url)
 		sound.volume = item.volume
 		sound.loop = item.loop
 		sound.load()
