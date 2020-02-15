@@ -69,8 +69,9 @@ function resumeGame(){
 }
 
 function initGame(){//初始游戏信息
-	clear(propcvs)
-	clear(enemycvs)
+	props = new Array()
+	enemys = new Array()
+	Mbullets = new Array()
 	userGrad = 0
 	bgSpeed = 2
 	Einfo = {
