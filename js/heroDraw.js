@@ -9,7 +9,7 @@ function heroDraw(canvas){
 		this.beginY = cHeight - this.height - 20
 		this.x = this.beginX
 		this.y = this.beginY
-		this.speed = 4
+		this.speed = cWidth*0.015625
 		this.bool = 0 //记录飞机状态,1 2图来回切换 
 		this.destroyTimes = 4
 		this.bomb = new Object()
@@ -62,15 +62,16 @@ function heroDraw(canvas){
 				let i = 0
 				if(Rand(0.7))
 					i = 1
-				propCen[i].prop()
-				console.log(propCen[i].log)
+				else if(Rand(0.3))
+					i = 2
+				drawProp(propCen[i].prop(),'bullet')
 			}
 			else{
 				propCen[heroProp].prop()
-				console.log(propCen[heroProp].log)
+				drawProp(propCen[heroProp].prop(),'bullet')
 			}
 			heroProp++
-			console.log(Binfo)
+			// console.log(Binfo)
 		}
 		
 		/* 移动位置记录 */
@@ -82,20 +83,20 @@ function heroDraw(canvas){
 		/* 移动判断 */
 		this.move = ()=> {
 			const speedX = this.speed
-			const speedY = speedX+1
-			if(this.left && this.x > 1 && this.x > (moveX-this.width)){
+			const speedY = speedX
+			if(this.left && this.x > 2 && this.x > (moveX-this.width)){
 				this.x -= speedX
 				lastX = this.x
 			}
-			else if(this.right && (this.x+this.width) < cWidth-1 && this.x < (moveX-this.width)){
+			else if(this.right && (this.x+this.width) < cWidth-2 && this.x < (moveX-this.width)){
 				this.x += speedX
 				lastX = this.x
 			}
-			if(this.up && this.y > 1 && this.y > (moveY-this.height)){
+			if(this.up && this.y > 2 && this.y > (moveY-this.height)){
 				this.y -= speedY
 				lastY = this.y
 			}
-			else if(this.down && (this.y+this.height) < cHeight-1 && this.y < (moveY-this.height)){
+			else if(this.down && (this.y+this.height) < cHeight-2 && this.y < (moveY-this.height)){
 				this.y += speedY
 				lastY = this.y
 			}

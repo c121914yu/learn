@@ -3,8 +3,8 @@ var Binfo = {
 	offectX : 0,
 	width : 6,
 	getBTime : 300,
-	speed : 10,
-	mode : 1
+	mode : 1,
+	life : 1
 }
 function DrawBullet(canvas){
 	newBullet()
@@ -24,8 +24,9 @@ function DrawBullet(canvas){
 		const ctx = canvas.getContext('2d')
 		this.height = 20
 		this.width = Binfo.width
-		this.speed = Binfo.speed
+		this.speed = 14
 		this.mode = Binfo.mode //子弹1,子弹2
+		this.life = Binfo.life //额外伤害
 		this.x1 = hero.x + 10 - Binfo.offectX
 		this.x2 = hero.x + hero.width - 10 + Binfo.offectX
 		this.y = hero.y
@@ -42,8 +43,8 @@ function DrawBullet(canvas){
 			for(let i=0;i<enemys.length;i++){
 				if(enemys[i].life > 0 && isHit(enemys[i],this,this.more,5)){
 					enemys[i].isHit = true
-					enemys[i].life -= this.mode
-					if(enemys[i].life === 0)
+					enemys[i].life -= this.life
+					if(enemys[i].life <= 0)
 						enemyDown(i)
 					return true
 				}

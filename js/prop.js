@@ -4,23 +4,45 @@ var proIndex = 1
 var heroProp = 0
 var enemyProp = 0
 var propCen = [
-	{name:'Bwidth',log:"子弹宽度增加",prop:()=>{Binfo.width+=1;Binfo.offectX+=1}},
-	{name:'Bspeed',log:"子弹速度/数量增加",prop:()=>{Binfo.speed+=1.5;Binfo.getBTime-=30}},
-	{name:'Bmode',log:"子弹伤害增加",prop:()=>Binfo.mode=2}
+	{name:'Bwidth',
+		prop:()=>{
+			Binfo.width += 1;
+			Binfo.offectX += 1
+			return "宽度增加"
+	}},
+	{name:'Bspeed',
+		prop:()=>{
+			if(Binfo.getBTime >= 130){
+				Binfo.getBTime -= 30
+				return "射速加快"
+			}
+			else
+				return propCen[0].prop()
+	}},
+	{name:'Bmode',
+		prop:()=>{
+			Binfo.mode = 2
+			if(Binfo.life < 3){		
+				Binfo.life += 0.5
+				return "伤害增大"
+			}
+			else
+				return propCen[0].prop()
+		}
+	}
 ]
 	
-function SetGameInfo(grad){
-	if(Rand(0.02*grad)) //一定几率获得炸弹
-		props.push(new NewProp(propcvs,"bomb_supply"))
-	if(userGrad > (proIndex*30) && userGrad < 3900){//30*2^7=3840 最多升级7次
+function SetGameInfo(type){
+	if(Rand(0.02*type)) //一定几率获得炸弹
+		props.push(new Prop("bomb_supply"))
+	if(userGrad > (proIndex*30)){
 		proIndex *= 2
-		props.push(new NewProp(propcvs,"bullet_supply"))
+		props.push(new Prop("bullet_supply"))
 		enemyHigh()
 	}
 }
 
-function NewProp(canvas,name){
-	this.i = props.length
+function Prop(name){
 	this.width = 50
 	this.height = 50
 	this.x = getRandX(this.width)
@@ -29,7 +51,10 @@ function NewProp(canvas,name){
 	this.img = getImg(PropImg,name)
 	this.type = name === "bomb_supply" ? 'bomb':'bullet'
 
-	const ctx = canvas.getContext('2d')
+	const ctx = propcvs.getContext('2d')
+	ctx.fillStyle = "#6d7779"
+	ctx.font = "lighter normal 25px 'MedievalSharp',cursive"
+	
 	this.draw = () => {
 	 ctx.drawImage(this.img,this.x,this.y,this.width,this.height)
 	}
@@ -47,6 +72,25 @@ function NewProp(canvas,name){
 		else
 			return true
 	}
+}
+
+function drawProp(text,type){
+	const ctx = propcvs.getContext('2d')
+	const X = cWidth/2 - 25*2
+	const Y = type === 'enemy' ? cHeight*0.1 : cHeight*0.1+25
+	const prop = new Prop()
+	prop.delay = 150
+	prop.draw = () => {
+		ctx.fillText(text,X,Y)
+	}
+	prop.move = () => {
+		prop.delay--
+		if(prop.delay <= 0)
+			return false
+		else
+			return true
+	}
+	props.push(prop)
 }
 
 function Rand(pro){//概率计算

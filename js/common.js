@@ -24,9 +24,10 @@ var clear = (canvas) => {
 
 //开始游戏
 function startGame(){
+	requestFullScreen(document.documentElement);
 	homecvs.style.display = 'none'
 	heroDraw(herocvs)
-	userGrad = 0
+	initGame()
 	resumeGame()
 }
 
@@ -41,6 +42,7 @@ function overGame(){
 	clear(bulletcvs)
 	clear(enemycvs)
 	getSound('bgGame').pause()
+	getSound('enemy3_flying').pause()
 }
 
 //暂停
@@ -64,6 +66,25 @@ function resumeGame(){
 	DrawBullet(bulletcvs)
 	enemyDraw(enemycvs)
 	begining = true
+}
+
+function initGame(){//初始游戏信息
+	userGrad = 0
+	bgSpeed = 2
+	Einfo = {
+		speed : 1,
+		newEnemySpeed : 700,
+		mulGrad : 0,
+		rand1 : 0.7,
+		rand2 : 0.8
+	}
+	Binfo = {
+		offectX : 0,
+		width : 6,
+		getBTime : 300,
+		mode : 1,
+		life : 1
+	}
 }
 
 function getRandX(width){//获取出现的x轴

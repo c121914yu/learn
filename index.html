@@ -6,23 +6,16 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>飞机大战</title>
 	<link href="https://fonts.font.im/css?family=MedievalSharp" rel="stylesheet">
-	<style type="text/css">
-		*{
-			padding: 0;
-			margin: 0;
-		}
-		body{
-			width: 100vw;
-			height: 100vh;
-		}
-		canvas{
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body onload="onLoad()">
+	<div class="loading">
+		<div class="loader">
+			<div class="circle"></div>
+			<div class="circle"></div>
+		</div>
+	</div>
+	
 	<canvas id="bkg">请升级浏览器</canvas>
 	<canvas id="bullet">请升级浏览器</canvas>
 	<canvas id="enemy">请升级浏览器</canvas>

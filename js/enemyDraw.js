@@ -4,7 +4,7 @@ var Einfo = {
 	newEnemySpeed : 700,
 	mulGrad : 0,
 	rand1 : 0.7,
-	rand2 : 0.9
+	rand2 : 0.8
 }
 function enemyDraw(canvas){
 	eTimer = setInterval(() => {
@@ -57,8 +57,9 @@ function enemyDraw(canvas){
 				this.downTimes--
 				this.ImgDelay = 3
 			}
-			if(this.downTimes === 0)
+			if(this.downTimes === 0){
 				return true
+			}
 			const img = enemyImg[this.type][enemyImg[this.type].length - this.downTimes]
 			if(img)
 				ctx.drawImage(img,this.x,this.y,this.width,this.height)
@@ -101,7 +102,7 @@ function enemyDown(i,addGrad=true,sound=true){
 	enemys[i].life = 0
 	if(addGrad){
 		userGrad += enemys[i].grad
-		SetGameInfo(enemys[i].grad)
+		SetGameInfo(enemys[i].type+1)
 	}
 }
 
@@ -138,36 +139,62 @@ function objEnemy(i){//敌机信息
 }
 
 var EnemyProp = [
-	{name:'SetRand',log:"敌机出现概率改变",prop:()=>{Einfo.rand1-=0.05;Einfo.rand2-=0.05}},
-	{name:'amountMore',log:"敌机数量少量增加",prop:()=>{Einfo.newEnemySpeed-=50}},
-	{name:'faster',log:"敌机速度增加",prop:()=>{Einfo.speed+=0.5;bgSpeed+=0.5}},
-	{name:'amountMore',log:"敌机数量大量增加",prop:()=>{Einfo.newEnemySpeed-=80}},
+	{name:'SetRand',
+		prop:()=>{
+			Einfo.rand1 -= 0.1;
+			Einfo.rand2 -= 0.1
+			if(Einfo.rand1 <= 0)
+				Einfo.rand1 = 0
+			if(Einfo.rand2 <= 0)
+				Einfo.rand2 = 0
+	}},
+	{name:'amountMore',
+		prop:()=>{
+			if(Einfo.newEnemySpeed >= 140)
+				Einfo.newEnemySpeed -= 80
+			else
+				return EnemyProp[0].prop()
+	}},
+	{name:'faster',
+		prop:()=>{
+			Einfo.speed += 1;
+			bgSpeed += 1
+	}},
+	{name:'amountMore',
+		prop:()=>{
+			if(Binfo.life >= 1)
+				Binfo.life -= 0.5
+			else
+				return EnemyProp[0].prop()
+	}},
 ]
 function enemyHigh(){
-	if(enemyProp > 2){
+	if(enemyProp > 3){
 		let i = 0
 		if(Rand(0.4))
-			i = 4
-		else if(Rand(0.3))
+			i = 1
+		else if(Rand(0.4))
 			i = 2
+		else if(Rand(0.4))
+			i = 3
 		EnemyProp[i].prop()
-		console.log(EnemyProp[i].log)
+		drawProp("敌机加强","enemy")
 	}
 	else{
 		EnemyProp[enemyProp].prop()
-		console.log(EnemyProp[enemyProp].log)
+		drawProp("敌机加强","enemy")
 	}
 	enemyProp++
-	Einfo.mulGrad +=enemyProp
-	console.log(Einfo)
+	Einfo.mulGrad += enemyProp
+	// console.log(Einfo)
 }
 
 function getRandNum(){//随机获取敌机
 	//出现概率设置
 	const rand = Math.random()
-	if(rand < Einfo.rand1)
+	if(rand <= Einfo.rand1)
 		return 0
-	else if(rand < Einfo.rand2)
+	else if(rand <= Einfo.rand2)
 		return 1
 	else
 		return 2

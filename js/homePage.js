@@ -1,4 +1,5 @@
 function startDraw(canvas){
+	document.querySelector('.loading').style.display = 'none'
 	bg = new bgDraw(bgcvs)
 	const ctx = canvas.getContext('2d')
 	ctx.beginPath()

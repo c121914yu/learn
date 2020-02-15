@@ -92,13 +92,16 @@ function getImg(imgs,name){
 	const img = imgs.find(item => {
 		return item.name === name
 	})
-	return img.img
+	if(img)
+		return img.img
+	else
+		return false
 }
 
 //加载声音
 function loadSound(){
 	sounds = [
-		{name:'bgGame',url:'sound/game_music.ogg',volume:0.3,loop:true},
+		{name:'bgGame',url:'sound/game_music.ogg',volume:0.5,loop:true},
 		{name:'button',url:'sound/button.wav',volume:0.9,loop:false},
 		{name:'me_down',url:'sound/me_down.wav',volume:1,loop:false},
 		{name:'bullet',url:'sound/bullet.wav',volume:1,loop:false},
@@ -107,13 +110,14 @@ function loadSound(){
 		{name:'enemy2_down',url:'sound/enemy2_down.wav',volume:1,loop:false},
 		{name:'enemy3_down',url:'sound/enemy3_down.wav',volume:1,loop:false},
 		{name:'enemy3_flying',url:'sound/enemy3_flying.wav',volume:0.5,loop:false},
-		{name:'get_bomb',url:'sound/get_bomb.wav',volume:0.5,loop:false},
-		{name:'get_bullet',url:'sound/get_bullet.wav',volume:0.5,loop:false},
+		{name:'get_bomb',url:'sound/get_bomb.wav',volume:1,loop:false},
+		{name:'get_bullet',url:'sound/get_bullet.wav',volume:1,loop:false},
 	]
 	sounds.forEach(item => {
 		const sound = new Audio(item.url)
 		sound.volume = item.volume
 		sound.loop = item.loop
+		sound.load()
 		item.audio = sound
 	})
 }
@@ -132,6 +136,21 @@ function onLoad(){
 		loadAll()
 		/* 刷新界面 */
 		running()
+	}
+}
+function requestFullScreen(element) {
+	// 判断各种浏览器，找到正确的方法
+	var requestMethod = element.requestFullScreen || //W3C
+		element.webkitRequestFullScreen || //FireFox
+		element.mozRequestFullScreen || //Chrome等
+		element.msRequestFullScreen; //IE11
+	if (requestMethod) {
+			requestMethod.call(element);
+	} else if (typeof window.ActiveXObject !== "undefined") { //for Internet Explorer
+		var wscript = new ActiveXObject("WScript.Shell");
+		if (wscript !== null) {
+			wscript.SendKeys("{F11}");
+		}
 	}
 }
 
@@ -201,8 +220,8 @@ function canvasSize(){
 	homecvs = document.getElementById('home')
 	propcvs = document.getElementById('prop')
 	
-	cWidth = window.screen.width
-	cHeight = window.screen.height
+	cWidth = window.screen.width//document.body.clientWidth //
+	cHeight = window.screen.height//document.body.clientHeight //
 	
 	/* 使画布铺满屏幕 */
 	bgcvs.width = cWidth
