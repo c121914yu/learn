@@ -111,13 +111,22 @@ git checkout 恢复旧版本（不删除新版本）相当于文件复制
 ```
 ### 远程仓库与本地仓库
 ```bash
-git remote -v 查看绑定的远程仓库
-git remote add 远端名 远端地址 ：与远端仓库连接
-git remote remove 远端名 ：与远端仓库解绑
+git remote 
+	-v 查看绑定的远程仓库
+	add 远端名 远端地址 ：与远端仓库连接
+	remove 远端名 ：与远端仓库解绑
+	set-url 远端名 远端地址 ：修改remote地址
 
-git clone 地址 : 复制代码
-git fetch ：本地更新远端代码
+git clone 
+	地址 项目名: 复制代码
+	--no-checkout 地址 : 复制代码，不切换分支
+	--bare 地址 ：裸文件
+	
+git fetch ：本地更新远端代码(包括分支更新)
+	若拉取到信息到新的远端分支，可直接git checkout 分支名，自动创建新分支
+	
 git merge 远端名/分支：合并远端与本地代码
+
 git pull 远端名 分支 ：git fetch + git merge 远端名/分支
 	--allow-unrelated-histories : 强制合并
 ```
@@ -125,15 +134,22 @@ git pull 远端名 分支 ：git fetch + git merge 远端名/分支
 ```bash
 git branch 分支管理
   空 ：查看本地分支
+	-r : 查看远端分支
 	-a : 查看本地及远程所以分钟
+	
 	分支名 ：创建分支(将原分支内容复制给新分支)
 	分支名 删除时的哈希值 ：恢复删除的分支
+	
 	checkout 分支名 ：切换分支
 	checkout -b 分支名 ：创建并切换至新分支
+	
 	-d 分支名 ：删除分支，需要切换至其他分支才可删除(只能删除合并了的分支)
 	-D 分支名 ：强制删除分支(通常用来删除未合并的分钟)
+	
 	--merge ：查看已合并的分支，新建分支默认合并（若所在分支是为合并的也会显示，所以尽量在主分支中查看）
 	--no-merge : 查看未合并分支
+	
+git push 远端名 --delete 分支名 ：删除远端分支
 ----------------------------
 git branch | xargs git branch -d 删除当前分支外其他合并了的分支
 git branch | xargs git branch -D 删除当前分支外所有分支
@@ -155,5 +171,9 @@ git merge 分支合并（需要合并到哪个分支，就切换到哪个分支�
 冲突解决
 1 git merge --abort ：取消本次合并
 2 手动解决冲突后 git add . > git commit > 填写记录
-
+```
+### 仓库迁移
+```bash
+git remote set-url 远端名 远端地址 ：修改远端分支
+git push --all 提交所有分支至新仓库
 ```
