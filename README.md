@@ -154,11 +154,11 @@ git push 远端名 --delete 分支名 ：删除远端分支
 git branch | xargs git branch -d 删除当前分支外其他合并了的分支
 git branch | xargs git branch -D 删除当前分支外所有分支
 
-git branch --merged| egrep -v "(^\*|master|dev)" 查看除master和dev外已经合并的分支
-git branch --merged| egrep -v "(^\*|master|dev)" | xargs git branch -d 删除除master和dev外已经合并的分支
+git branch --merged | egrep -v "(^\*|master|dev)" 查看除master和dev外已经合并的分支
+git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d 删除除master和dev外已经合并的分支
 
-git branch --no-merged| egrep -v "(^\*|master|dev)" 查看除master和dev外未合并的分钟
-git branch --no-merged| egrep -v "(^\*|master|dev)" | xargs git branch -D 删除除master和dev外未合并的分钟
+git branch --no-merged | egrep -v "(^\*|master|dev)" 查看除master和dev外未合并的分钟
+git branch --no-merged | egrep -v "(^\*|master|dev)" | xargs git branch -D 删除除master和dev外未合并的分钟
 ---------------------------
 	
 git merge 分支合并（需要合并到哪个分支，就切换到哪个分支下执行）
