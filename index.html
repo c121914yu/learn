@@ -4,78 +4,59 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>通信录筛选</title>
-	<link href="https://cdn.bootcss.com/materialize/1.0.0/css/materialize.css" rel="stylesheet">
+	<title>重量单位转化</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<style type="text/css">
+		body{
+			margin-top: 70px;
+			background-color: #333333;
+			color: #FFFFFF;
+		}
+	</style>
 </head>
 <body>
 	<div class="container">
-		<h1 class="center-align">我的通信录</h1>
-		<input type="text" id="filterInput" placeholder="搜索姓名"/>
-		<ul class="collection width-header" id="names">
-			<li class="collection-header">
-				<h5>A</h5>
-			</li>
-			<li class="collection-item">
-				<a href="#">Adams</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Allen</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Angel</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Avaa</a>
-			</li>
-			
-			<li class="collection-header">
-				<h5>B</h5>
-			</li>
-			<li class="collection-item">
-				<a href="#">Balley</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Bell</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Bob</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Brouce</a>
-			</li>
-			
-			<li class="collection-header">
-				<h5>C</h5>
-			</li>
-			<li class="collection-item">
-				<a href="#">Cart</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Cain</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Christy</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Cvaa</a>
-			</li>
-			
-			<li class="collection-header">
-				<h5>D</h5>
-			</li>
-			<li class="collection-item">
-				<a href="#">Ddams</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Dllen</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Dngel</a>
-			</li>
-			<li class="collection-item">
-				<a href="#">Dvaa</a>
-			</li>
-		</ul>
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<h1 class="display-4 text-center mb-3">重量转换器</h1>
+				
+				<form>
+					<div class="form-group">
+						<input 
+							type="number" 
+							id="jinInput" 
+							min="0" 
+							class="form-control"
+							 placeholder="请输入斤数"
+						>
+					</div>
+				</form>
+				
+				<div id="output">
+					<div class="card bg-primary mb-2 p-2">
+						<div class="card-block">
+							<h4>千克: </h4>
+							<div id="kgOutput"></div>
+						</div>
+					</div>
+					
+					<div class="card bg-success  mb-2 p-2">
+						<div class="card-block">
+							<h4>镑: </h4>
+							<div id="poundOutput"></div>
+						</div>
+					</div>
+					
+					<div class="card bg-danger  mb-2 p-2">
+						<div class="card-block">
+							<h4>盎司: </h4>
+							<div id="ozOutput"></div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
 	</div>
 </body>
 <script src="index.js" type="text/javascript" charset="utf-8"></script>

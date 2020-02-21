@@ -1,6 +1,7 @@
-# 过滤列表
+# 重量单位转化器
 ```bash
-str.indexOf() : 查询包含指定字符
-包含 -> 大于-1
-不包含 -> -1
+Dom.oninput 监听输入
+	e.target.value 获取输入值
+
+Dom.style.visibility = "hidden" 隐藏元素
 ```
