@@ -1,29 +1,23 @@
-const slides = document.querySelectorAll('.slide')
-const next = document.querySelector('.next')
-const back = document.querySelector('.back')
+// 获取input元素 
+let filterInput = document.getElementById('filterInput')
 
-let auto = setInterval(() => {
-	nextSlide()
-},5000)
+filterInput.addEventListener('keyup',filterNames)
 
-function nextSlide(){
-	const current = document.querySelector('.current')
-	/* 为下一个元素添加current */
-	if(current.nextElementSibling)
-		current.nextElementSibling.classList.add('current')
-	else
-		slides[0].classList.add('current')
+function filterNames(){
+	//获取到input内容
+	let val = document.getElementById('filterInput').value.toUpperCase()
+	//获取ul内容
+	let ul = document.getElementById('names')
+	let li = ul.querySelectorAll('li.collection-item')
 	
-	current.classList.remove('current')
-}
-
-function backSlide(){
-	const current = document.querySelector('.current')
-	/* 为上一个元素添加current */
-	if(current.previousElementSibling)
-		current.previousElementSibling.classList.add('current')
-	else
-		slides[slides.length-1].classList.add('current')
-	
-	current.classList.remove('current')
+	li.forEach(item => {
+		const a = item.getElementsByTagName('a')[0]
+		//indexOf查找指定字符,若不包含返回-1,若包含返回大于-1
+		console.log(a.innerHTML.toUpperCase().indexOf(val))
+		if(a.innerHTML.toUpperCase().indexOf(val) > -1){
+			item.style.display = ""
+		}
+		else
+			item.style.display = "none"
+	})
 }

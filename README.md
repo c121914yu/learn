@@ -1,5 +1,6 @@
-# 图片轮播
+# 过滤列表
 ```bash
-current.nextElementSibling 获取下一个Dom
-current.previousElementSibling 获取上一个Dom
+str.indexOf() : 查询包含指定字符
+包含 -> 大于-1
+不包含 -> -1
 ```
