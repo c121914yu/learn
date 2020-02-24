@@ -21,4 +21,5 @@ text_background_animation 文字背景动画
 topNav 响应式顶部导航栏（下拉导航）
 vision_difference 滚动视觉差（背景固定）
 weight_converter 重量转换器
+search_states 行政区查询
 ```
