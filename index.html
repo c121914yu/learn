@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>行政区自助查询应用</title>
-		<link rel="stylesheet" href="bootstrap.min.css">
-	</head>
-	<body>
-		<div class="container mt-5">
-			<div class="row">
-				<div class="col-md-6 m-auto">
-					<h3 class="text-center mb-3">美国行政区自助查询应用</h3>
-					<div class="form-group">
-						<input type="text" id="search" class="form-control form-control-lg" placeholder="请输入洲名">
-					</div>
-					<div id="match-list"></div>
-				</div>
-			</div>
-		</div>
-		<script src="index.js"></script>
-	</body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Animated Icons</title>
+  <link href="https://cdn.bootcss.com/font-awesome/5.12.1/css/all.css" rel="stylesheet">
+  <style type="text/css">
+    .fa{
+      font-size: 5rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="power" class="fa"></div>
+  <script type="text/javascript">
+    function power(){
+      const icon = document.getElementById('power')
+      icon.innerHTML = "&#xf244;"
+      setTimeout(()=>{
+        icon.innerHTML = "&#xf243;"
+      },1000)
+      setTimeout(()=>{
+        icon.innerHTML = "&#xf242;"
+      },2000)
+      setTimeout(()=>{
+        icon.innerHTML = "&#xf241;"
+      },3000)
+      setTimeout(()=>{
+        icon.innerHTML = "&#xf240;"
+      },4000)
+    }
+    power()
+    setInterval(power,5000)
+  </script>
+</body>
 </html>
