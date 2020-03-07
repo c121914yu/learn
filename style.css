@@ -1,0 +1,63 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  margin: 20px;
+  padding: 0;
+  background-color: #333333;
+}
+
+.container{
+  max-width: 760px;
+  margin: 0 auto;
+  border: 3px solid #FFFFFF;
+  padding: 5px;
+  background-color: #F4F4F4;
+}
+
+.main-img{
+  width: 100%;
+  height: 40vh;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.main-img img{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.imgs{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 5px;
+}
+.imgs .img{
+  width: 100%;
+  height: 30vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dotted #b1a8a8;
+}
+.imgs .img img{
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+}
+
+/* 主体 */
+.fade-in{
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn{
+  to{
+    opacity: 1;
+  }
+}
+@media (max-width:700px) {
+  .imgs{
+    grid-template-columns: repeat(2,1fr);
+  }
+}
