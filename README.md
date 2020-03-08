@@ -1,26 +1,18 @@
-# Learn Demo
+# 随机密码生成器
 
->accordion_slide 滑动手风琴  
->animatedIcon 字体图标动画  
->axios Axios网络请求库  
->blur_effect 背景模糊切换  
->canvas_base 画布canvas基本语法  
->css_grid css网格布局  
->css_unite css单位  
->dropdown_menu 下拉菜单  
->fliter_search 过滤搜索  
->food_web_demo 移动端外卖静态网页  
->game_airplane_battle 飞机大战  
->game_snake 贪吃蛇  
->git_learn git基本语法  
->img_slider 图片轮播  
->loading_animation 三种加载动画  
->nav_animation 导航栏动画  
->regular_express 正则表达式  
->split_landing_page 主次界面切换效果（放大缩小）  
->text_background_animation 文字背景动画  
->topNav 响应式顶部导航栏（下拉导航）  
->thumbnail 缩略图  
->vision_difference 滚动视觉差（背景固定）  
->weight_converter 重量转换器  
->search_states 行政区查询  
+```javascript 
+String.fromCharCode(number) //根据ascii码值返回对应字符
++String //可以将number类型的string转换成number类型
+Object.keys(obj) //获取到obj里每个key
+Object.values(obj) //获取到obj里每个key的值，以数组形式返回
+object[key] //相当于object.key的值，key可为变量
+string.slice() //字符串截取
+
+//复制文本的思路
+textarea = document.createElement('textarea') //创建textarea元素
+textarea.value = text //将文本赋值给textarea
+document.body.appendChild(textarea) //添加到body中
+textarea.select() //选择文本
+document.execCommand('copy') //复制
+textarea.remove() //移除textarea
+```

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>随机密码生成器</title>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h2>随机密码生成器</h2>
+    <div class="result">
+      <p id="resultPsw"></p>
+      <button type="button" id="copy">复制</button>
+    </div>
+    <div class="param">
+      <p>密码长度</p>
+      <input type="number" id="length" min="1" value="20"/>
+    </div>
+    <div class="param">
+      <p>包含大写字母</p>
+      <input type="checkbox" id="uppercase" checked/>
+    </div>
+    <div class="param">
+      <p>包含小写字母</p>
+      <input type="checkbox" id="lowercase" checked/>
+    </div>
+    <div class="param">
+      <p>包含数字</p>
+      <input type="checkbox" id="numbers" checked/>
+    </div>
+    <div class="param">
+      <p>包含字符</p>
+      <input type="checkbox" id="symbols" checked/>
+    </div>
+    <button type="button" id="randomPsw">生成密码</button>
+  </div>
+<script src="index.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
