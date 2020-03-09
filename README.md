@@ -34,7 +34,7 @@ scene.add( helper );
 
 ## <span id="2" class="title">2 顶点概念，几何结构</span>
 > 坐标系：X右，Y上，Z外  
-> 法线所指发现为亮除  
+> 当法线与光线相对时才会高亮  
 
 ### <span id="2-1" class="title">2.1 Buffer对象</span>
 ```javascript
@@ -191,9 +191,10 @@ SpotLight
 ```
 
 > 颜色计算方式
-> R2 = R1 * R0 * cosθ
-> G2 = G1 * G0 * cosθ
-> B2 = B1 * B0 * cosθ
+> R2 = R1 * R0 * cosθ  
+> G2 = G1 * G0 * cosθ  
+> B2 = B1 * B0 * cosθ  
+> 当模型为白色时显示颜色以环境光和光源色为准
 
 ### <span id="5-2" class="title">5.2 阴影效果</span>
 ```javascript
