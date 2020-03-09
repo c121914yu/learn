@@ -1,18 +1,20 @@
-# 随机密码生成器
+# 图片拖拽
 
 ```javascript 
-String.fromCharCode(number) //根据ascii码值返回对应字符
-+String //可以将number类型的string转换成number类型
-Object.keys(obj) //获取到obj里每个key
-Object.values(obj) //获取到obj里每个key的值，以数组形式返回
-object[key] //相当于object.key的值，key可为变量
-string.slice() //字符串截取
+//拖拽目标函数
+draggable="true" //dom开启拖拽效果
+ondragstart //拖拽开始
+ondragenbd //拖拽结束
 
-//复制文本的思路
-textarea = document.createElement('textarea') //创建textarea元素
-textarea.value = text //将文本赋值给textarea
-document.body.appendChild(textarea) //添加到body中
-textarea.select() //选择文本
-document.execCommand('copy') //复制
-textarea.remove() //移除textarea
+//容器监听拖拽对象事件
+dragover //拖动对象处于容器内
+dragenter //进入
+dragleave //离开
+drop //松开
+
+//关于append()事件一些事
+const fill = document.querySelector(".fill")
+const empties = document.querySelectorAll('.empty')
+//此时fill只有一个，若使用append后，原来容器的fill会被去掉
+empties[1].append(fill) //只有容器1有fill
 ```

@@ -1,87 +1,32 @@
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-}
 body{
-  width: 100%;
-  height: 100vh;
-  background-color: #6DC8EC;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.container{
-  width: 320px;
-  background-color: #5b8ff9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border-radius: 10px;
+  background-color: darksalmon;
+  margin: 0;
 }
 
-h2{
-  color: #FFFFFF;
-  padding: 10px 0;
+.empty{
+  display: inline-block;
+  height: 160px;
+  width: 160px;
+  background-color: #FFFFFF;
+  margin: 5px;
+  border: 3px solid salmon;
+  box-sizing: border-box;
 }
 
-.result{
-  width: 100%;
-  height: 40px;
-  background-color: #5ad8a6;
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-}
-.result p{
-  flex: 1;
-  height: 100%;
-  padding: 0 10px;
-  color: #FFFFFF;
-  line-height: 40px;
-}
-.result button{
-  border: none;
-  height: 100%;
-  background-color: transparent;
-  color: #F4F4F4;
-  padding: 0 10px;
+.fill{
+  background: url(img3.jpg) no-repeat center center/cover;
+  position: relative;
+  height: 150px;
+  width: 150px;
+  left: 2px;
+  top: 2px;
   cursor: pointer;
-  outline: none;
+}
+.hold{
+  border: none;
 }
 
-.param{
-  width: 100%;
-  margin: 10px 0;
-  display: flex;
-  align-items: center;
-  color: #FFFFFF;
-  padding: 0 10px;
-}
-.param p{
-  flex: 1;
-}
-.param input{
-  border: none;
-  outline: none;
-  max-width: 50px;
-  padding: 5px;
-}
-input[type=checkbox]{
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-}
-
-#randomPsw{
-  padding: 10px;
-  width: 80%;
-  border: none;
-  background-color: #5ad8a6;
-  color: #FFFFFF;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  cursor: pointer;
+.hovered{
+  background-color: #F4F4F4;
+  border-style: dotted;
 }
