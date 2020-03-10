@@ -4,17 +4,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>图片拖拽</title>
+  <title>星级评价</title>
+  <link href="https://cdn.bootcss.com/font-awesome/5.12.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-  <div class="empty">
-    <div class="fill" draggable="true"></div>
+  <div class="container mt-5">
+  <div class="form-group">
+    <select id="produce-select" class="form-control custom-select">
+      <option value ="0" disabled selected>选择产品</option>
+      <option value ="vue">Vue入门教程</option>
+      <option value ="node">Node框架express</option>
+      <option value ="jquery">前端jquery入门</option>
+      <option value ="djingo">Djingo入门教程</option>
+    </select>
   </div>
-  <div class="empty"></div>
-  <div class="empty"></div>
-  <div class="empty"></div>
-  <div class="empty"></div>
+  <div class="form-group">
+    <input type="number" id="rating-control" class="form-control" step="0.1" max="5" min="0" placeholder="评分为0-5" disabled>
+  </div>
+  
+  <table class="table table-striped">
+    <thead>
+      <th>米修在线热门课程</th>
+      <th>评分</th>
+    </thead>
+    <tbody>
+      <tr class="vue">
+        <td>Vue入门教程</td>
+        <td>
+          <div class="stars-outer">
+            <div class="stars-inner"></div>
+          </div>
+          <span class="number-rating"></span>
+        </td>
+      </tr>
+      <tr class="node">
+        <td>Node框架express</td>
+        <td>
+          <div class="stars-outer">
+            <div class="stars-inner"></div>
+          </div>
+          <span class="number-rating"></span>
+        </td>
+      </tr>
+      <tr class="jquery">
+        <td>前端jquery入门</td>
+        <td>
+          <div class="stars-outer">
+            <div class="stars-inner"></div>
+          </div>
+          <span class="number-rating"></span>
+        </td>
+      </tr>
+      <tr class="djingo">
+        <td>Djingo入门教程</td>
+        <td>
+          <div class="stars-outer">
+            <div class="stars-inner"></div>
+          </div>
+          <span class="number-rating"></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  
   <script src="index.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

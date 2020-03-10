@@ -1,20 +1,36 @@
-# 图片拖拽
+# 评分系统
+
+> 知识点
+> 1. css before伪元素
+> 2. css隐藏与显示 
+> 3. js对象操作新方法
 
 ```javascript 
-//拖拽目标函数
-draggable="true" //dom开启拖拽效果
-ondragstart //拖拽开始
-ondragenbd //拖拽结束
+// 对象遍历
+for(item in obj)//item为obj的key值
+  obj[item] //获取到value值
 
-//容器监听拖拽对象事件
-dragover //拖动对象处于容器内
-dragenter //进入
-dragleave //离开
-drop //松开
+//评分转化成星计算方式
+const rating = 4.7 //评分
+const starsTotal = 5 //总分
+const starPercentage = (ratings[rating] / starsTotal) * 100 //获取到百分比
+//获取四舍五入到十位的百分比
+const starPercentageRounded = `${Math.round(starPercentage/10)*10}%`
+```
 
-//关于append()事件一些事
-const fill = document.querySelector(".fill")
-const empties = document.querySelectorAll('.empty')
-//此时fill只有一个，若使用append后，原来容器的fill会被去掉
-empties[1].append(fill) //只有容器1有fill
+```css
+/* 隐藏与显示 */
+.stars-inner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+/* 
+  通过设置width控制星显示得数量
+  有5星，每颗占20%,半颗占10%，所以js部分四舍五入百分比也是这个道理
+  控制百分比只能取10的整数倍
+ */
 ```

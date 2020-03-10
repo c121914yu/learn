@@ -1,32 +1,28 @@
-body{
-  background-color: darksalmon;
-  margin: 0;
+table{
+  border: 1px solid #dee2e6;
 }
-
-.empty{
-  display: inline-block;
-  height: 160px;
-  width: 160px;
-  background-color: #FFFFFF;
-  margin: 5px;
-  border: 3px solid salmon;
-  box-sizing: border-box;
-}
-
-.fill{
-  background: url(img3.jpg) no-repeat center center/cover;
+.stars-outer{
   position: relative;
-  height: 150px;
-  width: 150px;
-  left: 2px;
-  top: 2px;
-  cursor: pointer;
+  display: inline-block;
 }
-.hold{
-  border: none;
+.stars-inner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
 }
 
-.hovered{
-  background-color: #F4F4F4;
-  border-style: dotted;
+.stars-outer::before{
+  content: '\f005 \f005 \f005 \f005 \f005';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 300;
+  color: #CCCCCC;
+}
+.stars-inner::before{
+  content: '\f005 \f005 \f005 \f005 \f005';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  color: #f8c101;
 }
