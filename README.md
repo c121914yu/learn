@@ -1,36 +1,31 @@
-# 评分系统
+# 文字转语言API
 
-> 知识点
-> 1. css before伪元素
-> 2. css隐藏与显示 
-> 3. js对象操作新方法
+```js
+speechSynthesis //目前浏览器兼容性还不是很好
 
-```javascript 
-// 对象遍历
-for(item in obj)//item为obj的key值
-  obj[item] //获取到value值
+//实例化
+var synth = window.speechSynthesis
+  .getVoices() //获取支持的语言列表（谷歌的语言用不了）
+  .onvoiceschanged //解决异步问题
+  .speaking //正在说话
+  .cancel() //清除说话列表
+  .pause() //暂停说话
+  .resume() //恢复暂停
+  .speak(speakText) //发音
+  .onerror //错误
+  .onend //说话结束
 
-//评分转化成星计算方式
-const rating = 4.7 //评分
-const starsTotal = 5 //总分
-const starPercentage = (ratings[rating] / starsTotal) * 100 //获取到百分比
-//获取四舍五入到十位的百分比
-const starPercentageRounded = `${Math.round(starPercentage/10)*10}%`
-```
-
-```css
-/* 隐藏与显示 */
-.stars-inner{
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-/* 
-  通过设置width控制星显示得数量
-  有5星，每颗占20%,半颗占10%，所以js部分四舍五入百分比也是这个道理
-  控制百分比只能取10的整数倍
- */
+//获得说话文本
+const speakText = new SpeechSynthesisUtterance(textInput.value)
+  .voice  //选择语言
+  .rate //音速
+  .pitch //音调
+  .volume //声音大小
+  .onstart // 语言开始
+  .onend //结束
+  .error //错误
+  .onpause //暂停
+  .onresume //恢复暂停
+  .onboundary //说到单词或句子边界
+  .onmark //到标记处
 ```
