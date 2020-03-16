@@ -8,6 +8,7 @@
 >css_grid css网格布局  
 >css_unite css单位  
 >dropdown_menu 下拉菜单  
+>dragImg 图片拖拽  
 >fliter_search 过滤搜索  
 >food_web_demo 移动端外卖静态网页  
 >game_airplane_battle 飞机大战  
@@ -16,8 +17,13 @@
 >img_slider 图片轮播  
 >loading_animation 三种加载动画  
 >nav_animation 导航栏动画  
+>randmPsw 随机密码生成器  
 >regular_express 正则表达式  
->split_landing_page 主次界面切换效果（放大缩小）  
+>rotatePPT 旋转幻灯片  
+>search_states  州级行政区查询  
+>split_landing_page 主次界面切换效果（放大缩小） 
+>starRating  星级评价 
+>textTOvoice 文字转语言API  
 >text_background_animation 文字背景动画  
 >topNav 响应式顶部导航栏（下拉导航）  
 >thumbnail 缩略图  
