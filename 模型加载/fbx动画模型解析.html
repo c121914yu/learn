@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>threejs</title>
+  <style type="text/css">
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <script src="http://www.yanhuangxueyuan.com/threejs/build/three.js"></script>
+  <script src="http://www.yanhuangxueyuan.com/threejs/examples/js/controls/OrbitControls.js"></script>
+  <script src="../lib/FBXLoader.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../lib/inflate.min.js" type="text/javascript" charset="utf-8"></script>
+  
+  <script src="../lib/stats.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+  <div id="Stats-output"></div>
+  <script>
+    //初始化环境
+    var scene = new THREE.Scene()
+    
+    // 加载fbx模型
+    var loader = new THREE.FBXLoader()
+    var mixer = null //声明一个混合器变量
+    loader.load('fbx/Samba Dancing.fbx',obj => {
+      scene.add(obj)
+      // 查看动画
+      // console.log(obj.animations)
+      // 解析动画
+      // obj作为参数创建一个混合器，解析播放obj及其子对象包含的动画数据
+      mixer = new THREE.AnimationMixer(obj)
+      var AnimationAction=mixer.clipAction(obj.animations[0]);
+      AnimationAction.timeScale = 1; //默认1，可以调节播放速度
+      //AnimationAction.loop = THREE.LoopOnce; //不循环播放
+      //AnimationAction.clampWhenFinished=true;//暂停在最后一帧播放的状态
+      AnimationAction.play();//播放动画
+    })
+    
+    // ground
+    var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
+    mesh.rotation.x = - Math.PI / 2;
+    mesh.receiveShadow = true;
+    scene.add( mesh );
+    
+    var grid = new THREE.GridHelper( 2000, 30, 0x333333, 0x333333 );
+    grid.material.opacity = 0.2;
+    grid.material.transparent = true;
+    scene.add( grid );
+    
+    var light = new THREE.HemisphereLight( 0xffffff, 0x444444 );
+    light.position.set( 0, 200, 0 );
+    scene.add( light );
+    
+    light = new THREE.DirectionalLight( 0xffff0 );
+    light.position.set( 0, 200, 100 );
+    light.castShadow = true;
+    light.shadow.camera.top = 180;
+    light.shadow.camera.bottom = -100;
+    light.shadow.camera.left = -120;
+    light.shadow.camera.right = 120;
+    scene.add( light );
+    
+    //设置相机
+    var width = window.innerWidth; 
+    var height = window.innerHeight; 
+    var k = width / height; //窗口宽高比
+    var s = 200; //三维场景显示范围控制系数，系数越大，显示的范围越大
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 0.1, 1000);
+    camera.position.set(300, 350,300); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+    //渲染对象
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);//设置渲染区域尺寸
+    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+    document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+    
+    // 帧率检测
+    var stats = initStats()
+    //初始化统计对象
+    function initStats() {
+      var stats = new Stats();
+      //设置统计模式
+      stats.setMode(0); // 0: fps, 1: ms
+      //统计信息显示在左上角
+      stats.domElement.style.position = 'absolute';
+      stats.domElement.style.left = '0px';
+      stats.domElement.style.top = '0px';
+      //将统计对象添加到对应的<div>元素中
+      document.getElementById("Stats-output").appendChild(stats.domElement);
+      return stats;
+    }
+    
+    var clock = new THREE.Clock();
+    function render(){
+      renderer.render(scene, camera);
+      requestAnimationFrame(render)
+      if (mixer !== null) {
+        // 更新混合器相关的时间
+        mixer.update(clock.getDelta());
+      }
+      stats.update()
+    }
+    render()
+    var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
+  </script>
+</body>
+</html>

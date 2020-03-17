@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1584346624923'); /* IE9 */
+  src: url('iconfont.eot?t=1584346624923#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPwAAsAAAAACBgAAAOjAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDeIMkATYCJAMMCwgABCAFhG0HPhvyBsgekiQ5AgU040AVAAAUQTZss3f3lN4VwXcPqlSJQqhXIFFVGJTDIqsivhvB1ZomZXZZW0DJoIDVw97l8rB/PD++qo6NrKxR1VWpcB1Yl5YSmKRE3X5QesAT2ejEi0PVzPOAzbdkO80xPJQLYHhrQMcaNNoKtyAF8gp1GLvyIvYTaDBiTnXr8Pyq0qUwhgXiXPCg0pXSKTW4UKesKZlbxA1PRV264lvHtf/z8Wc5REgqmTF25+wgrmx/Wly38QP/gGMXwcMfzwK2iIwlFYU4LbXtaw1jS1o1KLK2+uwaRUhjBf//8Xmqomalf3iJqGEUNoE5GE98WtgUgs+2uITzd1ADOx/wNMK6FGm7T2JAQr7k++BgAqD1z5vAWAaDAYzG4KjBcGIVZx08Hg3AWhEILJZXDcFL6DRDsWr+K0oMzuioEWOxn1E7tXXkvHQwQVZhW1LtsVhlzOHcUfzuYXQrXJy5sLJhmvqMFDt891Ht2ltbykJw146MkXA4vY2JRCrSD1bYCrT9/dbDw4r9y+iDq5ijm7jD64S0t1al2A8id0gxhn8y6Ww06rGXEqHgUyuYutrLAf2cn90Yguizr7vYGUS2rLamhCMgjtZmi4HNZbSlZV4f9ZnHx91gvVdBZdHOvP1tdeWSsxr0K1rlb6Pq99fXT/7if3n8q5fTjwpAtbr/EJ8M/+zz9s565X74NWEdJWsnYDppHPMt2kjV9xk/mrvd9DC0eDqePfJRCnyBVUYOJ3dmPnYFD/NABk4EdHQETkzNmA4WxfeE29PTptHFxMQGP8fmDI83NW0pbpCN55VtRiC/paFf+avuf8V7E6U9vkTEC/iAx/kD/oHCky94qLtRe/Dj+C0riio09LnIPJun27PLhEcCcrjc7yqFDn/9Fd2tCwl1umNIag1DVmcKWbBLUNFoBWrUWYUGi44WN+qktIpSjwVPAEKbL0haPELW5gdZsE2o6PEPNdqCHxrshvyajWYiu8dfYWAwhpQSsiPKmWU0PUHxBXKbBiop9PE3qLQIgq2VTTZ5hDmqMSYUOL5SaBhkKMogCByGaUqQq6iBkVnIMqZYtbbOKHvSQipllR6bFBQwUAyESkCIkBxzaxs9ue+/gDgrFVA1ZRX2G0jRRPdg2YKlFsgjWd6q7Foe0RxuhWEwgFFIBhwCC0rNGAFFea8GFDEW1HtECqsWUTXWVrYwvyJ7vnXQwLguR4ocRUO1LrydT6Wi7MyzGIucVyoA') format('woff2'),
+  url('iconfont.woff?t=1584346624923') format('woff'),
+  url('iconfont.ttf?t=1584346624923') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1584346624923#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-zhiwu-copy:before {
+  content: "\e62c";
+}
+
+.icon-queding:before {
+  content: "\e68b";
+}
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>森林漫游</title>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  <link rel="stylesheet" type="text/css" href="icon/iconfont.css"/>
+  <script src="../../lib/three.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/stats.js" type="text/javascript" charset="utf-8"></script>
+  <script src="libs/DragControls.js" type="text/javascript" charset="utf-8"></script>
+  <script src="libs/TransformControls.js" type="text/javascript" charset="utf-8"></script>
+  <script src="libs/PointerLockControls.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+  <div class="instructions">点击开始</div>
+  <div class="menu">
+    <div class="item" onclick="menuClick(0)">
+      <i class="iconfont icon-zhiwu-copy tree"></i>
+      <span>添加树木</span>
+    </div>
+    <div class="item continue">继续游戏</div>
+    <div class="item" onclick="overGame()">结束游戏</div>
+  </div>
+  <div id="Stats-output"></div>
+  <script src="variate.js" type="text/javascript" charset="utf-8"></script>
+  <script src="index.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

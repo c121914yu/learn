@@ -1,0 +1,23 @@
+{
+  "id": "1629592",
+  "name": "demo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "542460",
+      "name": "植物",
+      "font_class": "zhiwu-copy",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "2064993",
+      "name": "确定",
+      "font_class": "queding",
+      "unicode": "e68b",
+      "unicode_decimal": 59019
+    }
+  ]
+}

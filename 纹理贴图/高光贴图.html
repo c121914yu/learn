@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>threejs</title>
+  <style type="text/css">
+    body{
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <script src="http://www.yanhuangxueyuan.com/threejs/build/three.js"></script>
+  <script src="http://www.yanhuangxueyuan.com/threejs/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+  <script>
+    //初始化环境
+    var scene = new THREE.Scene()
+    
+    //球体
+    var geometry = new THREE.SphereGeometry(100, 25, 25);
+    
+    var textureLoader = new THREE.TextureLoader()
+    var texture = textureLoader.load('material/Earth.png')
+    var textureSpecular  = textureLoader.load('./material/earth-specular.gif');
+    var material = new THREE.MeshLambertMaterial({
+      map: texture,// 普通纹理贴图
+      shininess: 30,//高光部分的亮度，默认30
+      specularMap: textureSpecular, //高光贴图
+    })
+    
+    
+    var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+    scene.add(mesh)
+    
+    //环境光
+    var ambient = new THREE.AmbientLight(0x444444);
+    scene.add(ambient);
+    
+    //点光源
+    var point = new THREE.PointLight(0xffffff,1)
+    point.position.set(0,150,150)
+    scene.add(point)
+    
+    var point2 = new THREE.PointLight(0xffffff,1)
+    point2.position.set(-150,150,-150)
+    scene.add(point2)
+    
+    //设置相机
+    var width = window.innerWidth; 
+    var height = window.innerHeight; 
+    var k = width / height; //窗口宽高比
+    var s = 200; //三维场景显示范围控制系数，系数越大，显示的范围越大
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+    camera.position.set(200, 300, 200); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+    //渲染对象
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);//设置渲染区域尺寸
+    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+    document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+    
+    //辅助坐标系
+    var AxesHelper= new THREE.AxesHelper(1000);
+    scene.add(AxesHelper);
+    
+    function render(){
+      renderer.render(scene, camera);
+      requestAnimationFrame(render)
+    }
+    render()
+    var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
+  </script>
+</body>
+</html>
