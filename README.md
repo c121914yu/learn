@@ -7,6 +7,7 @@
 >canvas_base 画布canvas基本语法  
 >css_grid css网格布局  
 >css_unite css单位  
+>color_board 色彩板
 >dropdown_menu 下拉菜单  
 >dragImg 图片拖拽  
 >fliter_search 过滤搜索  
