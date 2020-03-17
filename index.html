@@ -4,43 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>旋转幻灯片</title>
+  <title>鼠标色彩板</title>
   <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 <body>
-  <div class="slider">
-    <div class="slide visable">
-      <img src="img/img1.jpg" >
-    </div>
-    <div class="slide">
-      <img src="img/img2.jpg" >
-    </div>
-    <div class="slide">
-      <img src="img/img3.jpg" >
-    </div>
-    <div class="slide">
-      <img src="img/img4.jpg" >
-    </div>
+  <div class="container">
   </div>
-  
-  <script type="text/javascript">
-    const slider = document.querySelector('.slider')
-    const slides = document.querySelectorAll('.slide')
-    let activeSlider = 0
-    function changeSlide(){
-      slides[activeSlider].classList.remove('visable')
-      activeSlider++
-      if(activeSlider >= slides.length)
-        activeSlider = 0
-      slides[activeSlider].classList.add('visable')
-    }
-    slider.addEventListener('animationstart',() => {
-      setInterval(() => {
-        changeSlide()
-      },2000)
-    })
-     
-    
-  </script>
+  <script src="index.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>
