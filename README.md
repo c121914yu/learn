@@ -21,6 +21,7 @@
 >randmPsw 随机密码生成器  
 >regular_express 正则表达式  
 >rotatePPT 旋转幻灯片  
+>ripple_cicle 波纹小球  
 >search_states  州级行政区查询  
 >split_landing_page 主次界面切换效果（放大缩小） 
 >starRating  星级评价 
