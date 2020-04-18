@@ -1,40 +1,34 @@
-const container = document.getElementById('container')
-const circleArr = []//[行][列]
+const circle1 = document.querySelector('.circle1')
+const circle2 = document.querySelector('.circle2')
+const radius = 25
 
-const rows = 15
-const cols = 15
-
-for(let i=0;i<cols;i++){
-	circleArr[i] = new Array()
-	for(let j=0;j<rows;j++){
-		const circle = document.createElement('div')
-		circle.classList.add('circle')
-		container.appendChild(circle)
-		circleArr[i].push(circle)
+class Vector{
+	constructor(x,y){
+		this.x = x
+		this.y = y
 	}
 }
+const oVector = new Vector(circle1.offsetLeft+radius,circle1.offsetTop+radius)
 
-circleArr.forEach((circle,i) => {
-	circle.forEach((item,j) => {
-		item.onclick = () => {
-			growCircle(i,j)
-		}
-	})
-})
+function angleTo(ratial1,ratial2){
+	// ab/|a||b|
+	const ab = (ratial1.x * ratial2.x) + (ratial1.y * ratial2.y)
+	const A = Math.sqrt(Math.pow(ratial1.x,2)+Math.pow(ratial1.y,2))
+	const B = Math.sqrt(Math.pow(ratial2.x,2)+Math.pow(ratial2.y,2))
+	const angle = Math.acos(ab/A/B)
+	return angle
+}
 
-function growCircle(i,j){
-	if(circleArr[i] && circleArr[i][j]){
-		if(!circleArr[i][j].classList.contains('grow')){
-			circleArr[i][j].classList.add('grow')
-			setTimeout(() => {
-				growCircle(i-1,j)
-				growCircle(i+1,j)
-				growCircle(i,j-1)
-				growCircle(i,j+1)
-			},100)
-			setTimeout(() => {
-				circleArr[i][j].classList.remove('grow')
-			},300)
-		}
-	}
+window.onmousemove = (e) => {
+	const mVector = new Vector(e.clientX,e.clientY)
+	// 求出ox，oy与鼠标的向量
+	const ratial = new Vector(mVector.x - oVector.x,mVector.y - oVector.y)
+	// 计算鼠标向量与标准向量（1，0)的夹角
+	const standard = new Vector(1,0)
+	// 0-180
+	let angle = angleTo(ratial,standard) * 180 /Math.PI
+	
+	if(mVector.y < oVector.y)
+		angle = -angle
+	circle2.style.transform = `rotate(${angle}deg)`
 }

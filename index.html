@@ -4,12 +4,127 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>波纹小球</title>
-	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>鼠标指南针</title>
+	<style type="text/css">
+		:root{
+			--rotate : 0deg;
+			--scale : 1;
+		}
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+		
+		body{
+			width: 100vw;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		.circle1{
+			width: 50px;
+			height: 50px;
+			background-color: #1460fb;
+			border-radius: 50%;
+			z-index: 2;
+		}
+		
+		.circle2{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background-color: rgba(91,143,249,0.2);
+			border: 1px solid #5b8ff9;
+			z-index: 0;
+			overflow: hidden;
+			transform: rotate(var(--rotate)) scale(var(--scale));
+		}
+		.sector{
+			position: absolute;
+			top: 0; 
+			right: 0;
+			width: 50%;
+			height: 50%;
+			background: rgba(91,143,249,0.6);
+			transform-origin: 0% 100%;
+			transform: rotate(75deg) skewY(-60deg);
+		}
+	</style>
 </head>
 <body>
-	<h3>点击小球</h3>
-	<div class="container" id="container"></div>
-	<script src="index.js" type="text/javascript" charset="utf-8"></script>
+	<div class="circle1" onmouseenter="enter()"></div>
+	<div class="circle2 " onmouseenter="enter()" onmouseleave="leave()">
+		<div class="sector"></div>
+	</div>
+	<script>
+		const circle1 = document.querySelector('.circle1')
+		const circle2 = document.querySelector('.circle2')
+		const sector = document.querySelector('.sector')
+		const radius = 25
+		
+		class Vector{
+			constructor(x,y){
+				this.x = x
+				this.y = y
+			}
+		}
+		const oVector = new Vector(circle1.offsetLeft+radius,circle1.offsetTop+radius)
+		
+		function angleTo(ratial1,ratial2){
+			// ab/|a||b|
+			const ab = (ratial1.x * ratial2.x) + (ratial1.y * ratial2.y)
+			const A = Math.sqrt(Math.pow(ratial1.x,2)+Math.pow(ratial1.y,2))
+			const B = Math.sqrt(Math.pow(ratial2.x,2)+Math.pow(ratial2.y,2))
+			const angle = Math.acos(ab/A/B)
+			return angle
+		}
+		
+		window.onmousemove = (e) => {
+			const mVector = new Vector(e.clientX,e.clientY)
+			// 求出ox，oy与鼠标的向量
+			const ratial = new Vector(mVector.x - oVector.x,mVector.y - oVector.y)
+			// 计算鼠标向量与标准向量（1，0)的夹角
+			const standard = new Vector(1,0)
+			// 0-180
+			let angle = angleTo(ratial,standard) * 180 /Math.PI
+			
+			if(mVector.y < oVector.y)
+				angle = -angle
+			document.documentElement.style.setProperty('--rotate', angle+'deg')
+		}
+		
+		var animate = false
+		var scale = 1
+		var amp = true
+		function enter(){
+			sector.style.visibility =  "hidden"
+			animate = true
+		}
+		function leave(){
+			sector.style.visibility =  "visible"
+			animate = false
+			scale = 1
+			document.documentElement.style.setProperty('--scale', scale)
+		}
+		
+		function Scale(){
+			requestAnimationFrame(Scale)
+			if(!animate) return
+			if(amp)
+				scale += 0.01
+			else
+				scale -= 0.01
+			if(scale >= 1.5)
+				amp = false
+			else if(scale <= 1)
+				amp = true
+			document.documentElement.style.setProperty('--scale', scale)
+		}
+		Scale()
+	</script>
 </body>
 </html>
