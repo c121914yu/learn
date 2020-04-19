@@ -1,37 +1,55 @@
-#LearnDemo
+# vuecli3
 
-1. accordion_slide - 滑动手风琴
-2. animatedIcon - 字体图标动画
-3. axiosAxios - 网络请求库
-4. blur_effect - 背景模糊切换
-5. canvas_base - 画布canvas基本语法
-6. css_gridcss - 网格布局
-7. css_unitecss - 单位
-8. color_board - 色彩板
-9. dropdown_menu - 下拉菜单
-10. dragImg - 图片拖拽
-11. fliter_search - 过滤搜索
-12. food_web_demo - 移动端外卖静态网页
-13. game_airplane_battle - 飞机大战
-14. game_snake - 贪吃蛇
-15. git_learngit - 基本语法
-16. img_slider - 图片轮播
-17. loading_animation - 三种加载动画
-18. nav_animation - 导航栏动画
-19. randmPsw - 随机密码生成器
-20. regular_express - 正则表达式
-21. rotatePPT - 旋转幻灯片
-22. ripple_cicle - 波纹小球
-23. search_states - 州级行政区查询
-24. split_landing_page - 主次界面切换效果（放大缩小）
-25. starRating - 星级评价
-26. textTOvoice - 文字转语言API
-27. text_background_animation - 文字背景动画
-28. topNav - 响应式顶部导航栏（下拉导航）
-29. thumbnail - 缩略图
-30. vision_difference - 滚动视觉差（背景固定）
-31. weight_converter - 重量转换器
-32. search_states - 行政区查询
-33. compass - 鼠标指南针
-34. gaodeMap - 高德地图
-35. vueCli3 - vueCli3目录
+## 安装包
+
+> npm install
+> cnpm install
+
+## 启动项目
+
+> npm run serve
+
+## 打包
+
+> npm run build
+
+## 新增插件方法
+
+> 终端命令： vue add name
+> 可以自动更改界面内容，通常ui库使用
+
+## 目录结构
+
+1. node_modules - 包文件
+2. public - indx.html 和 favicon.icon
+3. src - 路径文件
+   3.1 assets - 静态文件（img,js,css）
+   3.2 components - 组件
+   3.3 router - 路由文件
+   3.4 views - 视图文件
+   3.5 App.vue - 根路径
+   3.6 main.js - 入口文件
+4. .gitignore - git 忽略文件
+5. babel.config.js - webpack 语法转换文件
+6. package-lock.json - 所有包
+7. package.json - 环境包和开发包,启动指令等（重要）
+8. README.md - markdom 文件
+9. vue.config.js - webpack配置文件
+
+## 环境变量
+
+自定义时需要在 package.json 的 scrips 中加入：
+"name" : "vue-cli-service server/build --mode name"
+
+| 模式        | 对应 npm 命令 | 对应文件名       |
+| ----------- | ------------- | ---------------- |
+| 空 | 任意        | .env 不匹配时调用|
+| development | server        | .env.development |
+| production  | build         | .env.production  |
+| test        | test          | .env.test        |
+| 自定义      | 自定义        | .env.自定义      |
+
+## 独立运行vue文件
+> 终端指令：vue serve name.vue
+
+
